@@ -1,0 +1,9 @@
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.exe
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.pdb
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.Form1.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.Resources.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.vbproj.GenerateResource.Cache
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.exe
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.xml
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
