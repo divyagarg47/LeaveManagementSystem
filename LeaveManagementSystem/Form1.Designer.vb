@@ -22,17 +22,43 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.Panel_Login = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel_Login.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'Panel_Login
+        '
+        Me.Panel_Login.AccessibleRole = System.Windows.Forms.AccessibleRole.HotkeyField
+        Me.Panel_Login.BackColor = System.Drawing.Color.White
+        Me.Panel_Login.Controls.Add(Me.Panel1)
+        Me.Panel_Login.Location = New System.Drawing.Point(436, 174)
+        Me.Panel_Login.Name = "Panel_Login"
+        Me.Panel_Login.Size = New System.Drawing.Size(357, 360)
+        Me.Panel_Login.TabIndex = 0
+        '
+        'Panel1
+        '
+        Me.Panel1.BackgroundImage = Global.LeaveManagementSystem.My.Resources.Resources.IITG_logo
+        Me.Panel1.Location = New System.Drawing.Point(78, 17)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(168, 174)
+        Me.Panel1.TabIndex = 0
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(282, 253)
+        Me.BackColor = System.Drawing.Color.AliceBlue
+        Me.ClientSize = New System.Drawing.Size(1228, 709)
+        Me.Controls.Add(Me.Panel_Login)
         Me.Name = "Form1"
         Me.Text = "Form1"
+        Me.Panel_Login.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents Panel_Login As System.Windows.Forms.Panel
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
 
 End Class
