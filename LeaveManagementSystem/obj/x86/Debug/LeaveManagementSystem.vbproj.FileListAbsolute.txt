@@ -7,3 +7,6 @@ C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSy
 C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.exe
 C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.xml
 C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
+C:\Users\deven\Downloads\sem\sem6\cs346 soft lab\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.exe
+C:\Users\deven\Downloads\sem\sem6\cs346 soft lab\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.xml
+C:\Users\deven\Downloads\sem\sem6\cs346 soft lab\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
