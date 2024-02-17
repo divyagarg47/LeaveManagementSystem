@@ -82,6 +82,12 @@
     <Compile Include="AdminForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ApproveLeaveForm.Designer.vb">
+      <DependentUpon>ApproveLeaveForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveLeaveForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ChangePasswordForm.Designer.vb">
       <DependentUpon>ChangePasswordForm.vb</DependentUpon>
     </Compile>
@@ -99,12 +105,6 @@
     </Compile>
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.vb">
-      <DependentUpon>Form2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LeaveHistoryForm.Designer.vb">
@@ -140,6 +140,9 @@
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ApproveLeaveForm.resx">
+      <DependentUpon>ApproveLeaveForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -148,9 +151,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LeaveHistoryForm.resx">
       <DependentUpon>LeaveHistoryForm.vb</DependentUpon>
