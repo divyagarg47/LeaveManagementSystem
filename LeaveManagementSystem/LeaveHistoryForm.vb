@@ -8,12 +8,12 @@ Public Class LeaveHistoryForm
 
     Private Sub FetchLeaveHistory()
         Dim connectionString As String = "server=127.0.0.1;uid=root;password=;database=leavemanagement"
-        Dim connection As New MySqlConnection(connectionString)
+        'connection As New MySqlConnection(connectionString)
 
         Using connection As New MySqlConnection(connectionString)
             Try
                 connection.Open()
-                Dim query As String = "SELECT Start_Date, End_Date, Applied_On, Number_Of_Leaves, Type_Of_Leave, Status_Of_Leave, Reason  FROM leave_table"
+                Dim query As String = "SELECT Start_Date, End_Date, Applied_On, Number_Of_Leaves, Type_Of_Leave, Status_Of_Leave, Reason  FROM leave_table WHERE IITG_ID={GlobalVariables.Email}"
                 Dim cmd As New MySqlCommand(query, connection)
                 Dim da As New MySqlDataAdapter(cmd)
                 Dim table As New DataTable()
@@ -33,7 +33,7 @@ Public Class LeaveHistoryForm
                 End With
 
             Catch ex As Exception
-                MessageBox.Show($"An error occurred: {ex.Message}")
+                MessageBox.Show("An error occurred: {ex.Message}")
             Finally
                 connection.Close()
             End Try

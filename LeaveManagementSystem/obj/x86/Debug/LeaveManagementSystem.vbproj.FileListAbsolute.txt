@@ -14,10 +14,14 @@ C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveM
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.xml
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.vbprojResolveAssemblyReference.cache
-C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.Form1.resources
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.Resources.resources
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.Form2.resources
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.vbproj.GenerateResource.Cache
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.exe
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.pdb
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.LeaveHistoryForm.resources
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.LoginForm.resources
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ApplyLeaveForm.resources
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ChangePasswordForm.resources
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.HomePageForm.resources
