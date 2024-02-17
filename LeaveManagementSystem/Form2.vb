@@ -43,4 +43,7 @@ Public Class Form2
         InsertRecord(210101033, "s.bussa", "wer", "Santhosh", "CSE", "B.Tech", False)
     End Sub
 
+    Private Sub Form2_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
