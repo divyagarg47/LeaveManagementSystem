@@ -25,30 +25,44 @@ Partial Class LoginForm
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.txtUserID = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
+        Me.Panel_Login = New System.Windows.Forms.Panel()
+        Me.Panel_Login.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(530, 295)
+        Me.btnLogin.BackColor = System.Drawing.Color.Turquoise
+        Me.btnLogin.Location = New System.Drawing.Point(62, 213)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(75, 23)
+        Me.btnLogin.Size = New System.Drawing.Size(100, 32)
         Me.btnLogin.TabIndex = 0
-        Me.btnLogin.Text = "Button1"
-        Me.btnLogin.UseVisualStyleBackColor = True
+        Me.btnLogin.Text = "Login"
+        Me.btnLogin.UseVisualStyleBackColor = False
         '
         'txtUserID
         '
-        Me.txtUserID.Location = New System.Drawing.Point(631, 66)
+        Me.txtUserID.Location = New System.Drawing.Point(62, 118)
         Me.txtUserID.Name = "txtUserID"
         Me.txtUserID.Size = New System.Drawing.Size(100, 22)
         Me.txtUserID.TabIndex = 1
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(640, 163)
+        Me.txtPassword.Location = New System.Drawing.Point(62, 167)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(100, 22)
         Me.txtPassword.TabIndex = 2
+        '
+        'Panel_Login
+        '
+        Me.Panel_Login.BackColor = System.Drawing.Color.White
+        Me.Panel_Login.Controls.Add(Me.txtPassword)
+        Me.Panel_Login.Controls.Add(Me.btnLogin)
+        Me.Panel_Login.Controls.Add(Me.txtUserID)
+        Me.Panel_Login.Location = New System.Drawing.Point(556, 108)
+        Me.Panel_Login.Name = "Panel_Login"
+        Me.Panel_Login.Size = New System.Drawing.Size(227, 290)
+        Me.Panel_Login.TabIndex = 3
         '
         'LoginForm
         '
@@ -56,17 +70,17 @@ Partial Class LoginForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.AliceBlue
         Me.ClientSize = New System.Drawing.Size(1228, 709)
-        Me.Controls.Add(Me.txtPassword)
-        Me.Controls.Add(Me.txtUserID)
-        Me.Controls.Add(Me.btnLogin)
+        Me.Controls.Add(Me.Panel_Login)
         Me.Name = "LoginForm"
         Me.Text = "Form1"
+        Me.Panel_Login.ResumeLayout(False)
+        Me.Panel_Login.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnLogin As System.Windows.Forms.Button
     Friend WithEvents txtUserID As System.Windows.Forms.TextBox
     Friend WithEvents txtPassword As System.Windows.Forms.TextBox
+    Friend WithEvents Panel_Login As System.Windows.Forms.Panel
 
 End Class

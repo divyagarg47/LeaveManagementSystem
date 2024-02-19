@@ -25,3 +25,11 @@ C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveM
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ApplyLeaveForm.resources
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ChangePasswordForm.resources
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.HomePageForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.vbprojResolveAssemblyReference.cache
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.AdminForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ApproveLeaveForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ChangePasswordForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.HomePageForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.LoginForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.LeaveHistoryForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ApplyLeaveForm.resources

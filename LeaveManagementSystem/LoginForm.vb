@@ -51,6 +51,36 @@ Public Class LoginForm
     End Function
 
     Private Sub LoginForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        Me.WindowState = FormWindowState.Maximized
+
+        'Center the login page
+        Panel_Login.Location = New Point((Me.Size.Width - Panel_Login.Size.Width) / 2, (Me.Size.Height - Panel_Login.Size.Height) / 2)
+
+        ' Add a PictureBox for the IITG logo
+        Dim iitgLogoPictureBox As New PictureBox()
+        Try
+            ' Load the image file from the same directory as the application executable
+            Dim imagePath As String = "C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\Pics\IITG_logo"
+            If System.IO.File.Exists(imagePath) Then
+                iitgLogoPictureBox.Image = Image.FromFile(imagePath)
+
+                ' Set PictureBox properties
+                iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
+                iitgLogoPictureBox.Size = New Size(100, 50) ' Set the size of the logo PictureBox
+                iitgLogoPictureBox.Location = New Point((Me.Size.Width - Panel_Login.Size.Width) / 2 + 20, (Me.Size.Height - Panel_Login.Size.Height) / 2 + 10) ' Position the logo at the top left corner
+                Me.Controls.Add(iitgLogoPictureBox)
+            Else
+                MessageBox.Show("The image file '" & imagePath & "' could not be found.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            ' Handle file loading errors
+            MessageBox.Show("An error occurred while loading the image: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub txtUserID_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtUserID.TextChanged
 
     End Sub
+
 End Class
