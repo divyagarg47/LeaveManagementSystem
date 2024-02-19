@@ -45,6 +45,8 @@ Partial Class LoginForm
         Me.txtUserID.Name = "txtUserID"
         Me.txtUserID.Size = New System.Drawing.Size(100, 22)
         Me.txtUserID.TabIndex = 1
+        Me.txtUserID.Text = "IITG Id"
+        Me.txtUserID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtPassword
         '
@@ -52,6 +54,8 @@ Partial Class LoginForm
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(100, 22)
         Me.txtPassword.TabIndex = 2
+        Me.txtPassword.Text = "Password"
+        Me.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Panel_Login
         '
