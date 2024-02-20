@@ -67,4 +67,15 @@ Public Class ChangePasswordForm
             End Using
         End Using
     End Function
+
+    Private Sub ChangePasswordForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        Me.WindowState = FormWindowState.Maximized
+        GroupBox1.Location = New Point((Me.Size.Width - GroupBox1.Size.Width) / 2, (Me.Size.Height - GroupBox1.Size.Height) / 2)
+
+    End Sub
+
+    Private Sub txtEmail_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtEmail.TextChanged
+
+    End Sub
 End Class

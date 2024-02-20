@@ -56,7 +56,7 @@ Public Class LoginForm
 
         'Center the login page
         Panel_Login.Location = New Point((Me.Size.Width - Panel_Login.Size.Width) / 2, (Me.Size.Height - Panel_Login.Size.Height) / 2)
-
+        GroupBox1.Location = New Point(Panel_Login.Location.X, Panel_Login.Location.Y)
         ' Add a PictureBox for the IITG logo
         Dim iitgLogoPictureBox As New PictureBox()
         Try
@@ -83,4 +83,7 @@ Public Class LoginForm
 
     End Sub
 
+    Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles GroupBox1.Enter
+
+    End Sub
 End Class
