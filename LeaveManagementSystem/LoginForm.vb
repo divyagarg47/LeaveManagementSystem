@@ -3,7 +3,7 @@
 Public Class LoginForm
 
     ' Connection string for your MySQL database
-    Dim connectionString As String = "server=127.0.0.1;uid=root;password=;database=leavemanagement;"
+    Dim connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
 
     Private Sub btnLogin_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnLogin.Click
         Dim userId As String = txtUserID.Text
@@ -17,6 +17,8 @@ Public Class LoginForm
             If CheckPassword(userId, password, designation) Then
                 GlobalVariables.Email = userId
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.Hide()
+                HomePageForm.Show()
             Else
                 MessageBox.Show("Incorrect Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
@@ -55,20 +57,19 @@ Public Class LoginForm
         Me.WindowState = FormWindowState.Maximized
 
         'Center the login page
-        Panel_Login.Location = New Point((Me.Size.Width - Panel_Login.Size.Width) / 2, (Me.Size.Height - Panel_Login.Size.Height) / 2)
-        GroupBox1.Location = New Point(Panel_Login.Location.X, Panel_Login.Location.Y)
+        GroupBox1.Location = New Point((Me.Size.Width - GroupBox1.Size.Width) / 2, (Me.Size.Height - GroupBox1.Size.Height) / 2)
         ' Add a PictureBox for the IITG logo
         Dim iitgLogoPictureBox As New PictureBox()
         Try
             ' Load the image file from the same directory as the application executable
-            Dim imagePath As String = "C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\Pics\IITG_logo"
+            Dim imagePath As String = "C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\Pics\IITG_logo.png"
             If System.IO.File.Exists(imagePath) Then
                 iitgLogoPictureBox.Image = Image.FromFile(imagePath)
 
                 ' Set PictureBox properties
                 iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
                 iitgLogoPictureBox.Size = New Size(100, 50) ' Set the size of the logo PictureBox
-                iitgLogoPictureBox.Location = New Point((Me.Size.Width - Panel_Login.Size.Width) / 2 + 20, (Me.Size.Height - Panel_Login.Size.Height) / 2 + 10) ' Position the logo at the top left corner
+                iitgLogoPictureBox.Location = New Point((Me.Size.Width - GroupBox1.Size.Width) / 2 + 20, (Me.Size.Height - GroupBox1.Size.Height) / 2 + 10) ' Position the logo at the top left corner
                 Me.Controls.Add(iitgLogoPictureBox)
             Else
                 MessageBox.Show("The image file '" & imagePath & "' could not be found.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -84,6 +85,23 @@ Public Class LoginForm
     End Sub
 
     Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles GroupBox1.Enter
+
+    End Sub
+
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        Me.Hide()
+        ChangePasswordForm.Show()
+    End Sub
+
+    Private Sub Label2_Click(sender As System.Object, e As System.EventArgs) Handles Label2.Click
+
+    End Sub
+
+    Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
+
+    End Sub
+
+    Private Sub txtPassword_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtPassword.TextChanged
 
     End Sub
 End Class

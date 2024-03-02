@@ -3,7 +3,7 @@
 Public Class HomePageForm
 
     ' Connection string for your MySQL database
-    Dim connectionString As String = "server=127.0.0.1;uid=root;password=;database=leavemanagement;"
+    Dim connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
 
     Private Sub HomePageForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         ' Load user information when the form loads

@@ -2,7 +2,7 @@
 
 Public Class ApplyLeaveForm
 
-    Private connectionString As String = "server=127.0.0.1;uid=root;password=;database=leavemanagement"
+    Private connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
     Private connection As New MySqlConnection(connectionString)
 
     Private Sub SubmitButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SubmitButton.Click

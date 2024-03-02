@@ -3,7 +3,7 @@
 Public Class ChangePasswordForm
 
     ' Connection string for your MySQL database
-    Dim connectionString As String = "server=127.0.0.1;uid=root;password=;database=leavemanagement;"
+    Dim connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
 
     Private Sub btnChangePassword_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnChangePassword.Click
         Dim userEmail As String = txtEmail.Text
@@ -19,6 +19,9 @@ Public Class ChangePasswordForm
                 ' Update the password
                 If UpdatePassword(userEmail, newPassword, designation) Then
                     MessageBox.Show("Password changed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    Me.Hide()
+                    LoginForm.Show()
                 Else
                     MessageBox.Show("Failed to update password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
