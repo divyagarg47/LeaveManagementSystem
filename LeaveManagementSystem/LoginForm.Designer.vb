@@ -26,9 +26,9 @@ Partial Class LoginForm
         Me.txtUserID = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -73,15 +73,14 @@ Partial Class LoginForm
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         '
-        'Button1
+        'Label2
         '
-        Me.Button1.ForeColor = System.Drawing.Color.DarkTurquoise
-        Me.Button1.Location = New System.Drawing.Point(23, 187)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(180, 29)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Change Password"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(60, 78)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 17)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Password"
         '
         'Label1
         '
@@ -92,14 +91,15 @@ Partial Class LoginForm
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "IITG ID"
         '
-        'Label2
+        'Button1
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(60, 78)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 17)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "Password"
+        Me.Button1.ForeColor = System.Drawing.Color.DarkTurquoise
+        Me.Button1.Location = New System.Drawing.Point(23, 187)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(180, 29)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "Change Password"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'LoginForm
         '
