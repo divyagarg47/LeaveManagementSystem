@@ -9,6 +9,12 @@ Public Class LoginForm
         Dim userId As String = txtUserID.Text
         Dim password As String = txtPassword.Text
 
+        If String.IsNullOrEmpty(userId) OrElse String.IsNullOrEmpty(password) Then
+            MessageBox.Show("Please enter both email and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ' Exit the event, preventing further code execution
+            Exit Sub
+        End If
+
         ' Check if the user exists in the lookup table
         Dim designation As String = GetUserDesignation(userId)
 
@@ -16,9 +22,12 @@ Public Class LoginForm
             ' User exists in lookup table, now check the password in the corresponding table
             If CheckPassword(userId, password, designation) Then
                 GlobalVariables.Email = userId
-                MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                GlobalVariables.Designation = designation
+                txtUserID.Text = ""
+                txtPassword.Text = ""
                 Me.Hide()
                 HomePageForm.Show()
+                MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("Incorrect Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
@@ -80,28 +89,11 @@ Public Class LoginForm
         End Try
     End Sub
 
-    Private Sub txtUserID_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtUserID.TextChanged
-
-    End Sub
-
-    Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles GroupBox1.Enter
-
-    End Sub
-
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        txtUserID.Text = ""
+        txtPassword.Text = ""
         Me.Hide()
         ChangePasswordForm.Show()
     End Sub
 
-    Private Sub Label2_Click(sender As System.Object, e As System.EventArgs) Handles Label2.Click
-
-    End Sub
-
-    Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
-
-    End Sub
-
-    Private Sub txtPassword_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtPassword.TextChanged
-
-    End Sub
 End Class

@@ -5,7 +5,7 @@ Public Class HomePageForm
     Inherits Form
     Dim userEmail As String
     Dim userName As String
-    Dim designationLabel As New Label() ' Fill in backend
+    Dim designationLabel As New Label()
     Dim iitgIdLabel As New Label() ' Fill in Backend
     Dim rollNoLabel As New Label()
     Dim programLabel As New Label()
@@ -24,9 +24,9 @@ Public Class HomePageForm
     ' Function to load user information
     Private Sub LoadUserInfo()
         userEmail = GlobalVariables.Email
+        Dim designation As String = GlobalVariables.Designation
 
         ' Check if the user exists in the lookup table
-        Dim designation As String = GetUserDesignation(userEmail)
         If designation IsNot Nothing Then
             ' User exists in lookup table, now get the user's name
             userName = GetUserName(userEmail, designation)
@@ -36,18 +36,6 @@ Public Class HomePageForm
             MessageBox.Show("User information not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
-
-    ' Function to get the user's designation from the lookup table
-    Private Function GetUserDesignation(ByVal userEmail As String) As String
-        Using connection As New MySqlConnection(connectionString)
-            connection.Open()
-            Dim query As String = "SELECT Designation FROM lookup_table WHERE IITG_ID = @UserEmail"
-            Using command As New MySqlCommand(query, connection)
-                command.Parameters.AddWithValue("@UserEmail", userEmail)
-                Return TryCast(command.ExecuteScalar(), String)
-            End Using
-        End Using
-    End Function
 
     Private Function GetElement(ByVal userEmail As String, ByVal table As String, ByVal item As String) As String
         Using connection As New MySqlConnection(connectionString)
@@ -268,7 +256,11 @@ Public Class HomePageForm
     ' Event handler method for the logout button click event
     Private Sub LogoutButton_Click(sender As Object, e As EventArgs)
         ' Add logout functionality here
+        GlobalVariables.Email = ""
+        GlobalVariables.Designation = ""
+
+        Me.Hide()
+        LoginForm.Show()
         MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ' You can add code to close the form, reset session data, or perform any other logout actions.
     End Sub
 End Class

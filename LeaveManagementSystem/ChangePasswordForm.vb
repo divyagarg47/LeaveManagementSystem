@@ -10,6 +10,24 @@ Public Class ChangePasswordForm
         Dim oldPassword As String = txtOldPassword.Text
         Dim newPassword As String = txtNewPassword.Text
 
+        If String.IsNullOrEmpty(userEmail) OrElse String.IsNullOrEmpty(oldPassword) OrElse String.IsNullOrEmpty(newPassword) Then
+            MessageBox.Show("Please enter all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ' Exit the event, preventing further code execution
+            Exit Sub
+        End If
+
+        If newPassword.Equals(oldPassword) Then
+            MessageBox.Show("New password can not be same as old passsword.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ' Exit the event, preventing further code execution
+            Exit Sub
+        End If
+
+        If Not ValidateNewPassword(newPassword) Then
+            MessageBox.Show("New password should have atlease 1 capital letter, 1 numeric value and 1 special character.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ' Exit the event, preventing further code execution
+            Exit Sub
+        End If
+
         ' Check if the user exists in the lookup table
         Dim designation As String = GetUserDesignation(userEmail)
 
@@ -18,10 +36,13 @@ Public Class ChangePasswordForm
             If CheckOldPassword(userEmail, oldPassword, designation) Then
                 ' Update the password
                 If UpdatePassword(userEmail, newPassword, designation) Then
-                    MessageBox.Show("Password changed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+                    txtEmail.Text = ""
+                    txtOldPassword.Text = ""
+                    txtNewPassword.Text = ""
                     Me.Hide()
                     LoginForm.Show()
+                    MessageBox.Show("Password changed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
                 Else
                     MessageBox.Show("Failed to update password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
@@ -32,6 +53,11 @@ Public Class ChangePasswordForm
             MessageBox.Show("User does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
+
+    Private Function ValidateNewPassword(ByVal newPassword As String) As Boolean
+        ' Check if the new password has at least one capital letter, one number, and one special character
+        Return System.Text.RegularExpressions.Regex.IsMatch(newPassword, "(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])")
+    End Function
 
     ' Function to get the user's designation from the lookup table
     Private Function GetUserDesignation(ByVal userEmail As String) As String
@@ -78,7 +104,11 @@ Public Class ChangePasswordForm
 
     End Sub
 
-    Private Sub txtEmail_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtEmail.TextChanged
-
+    Private Sub btnBack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
+        txtEmail.Text = ""
+        txtOldPassword.Text = ""
+        txtNewPassword.Text = ""
+        Me.Hide()
+        LoginForm.Show()
     End Sub
 End Class
