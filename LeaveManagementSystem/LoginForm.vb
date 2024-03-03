@@ -68,21 +68,20 @@ Public Class LoginForm
         'Center the login page
         GroupBox1.Location = New Point((Me.Size.Width - GroupBox1.Size.Width) / 2, (Me.Size.Height - GroupBox1.Size.Height) / 2)
         ' Add a PictureBox for the IITG logo
+         ' Add a PictureBox for the IITG logo
         Dim iitgLogoPictureBox As New PictureBox()
         Try
             ' Load the image file from the same directory as the application executable
-            Dim imagePath As String = "C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\Pics\IITG_logo.png"
-            If System.IO.File.Exists(imagePath) Then
-                iitgLogoPictureBox.Image = Image.FromFile(imagePath)
+            iitgLogoPictureBox.Image = LeaveManagementSystem.My.Resources.IITG_logo
 
-                ' Set PictureBox properties
-                iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
-                iitgLogoPictureBox.Size = New Size(100, 50) ' Set the size of the logo PictureBox
-                iitgLogoPictureBox.Location = New Point((Me.Size.Width - GroupBox1.Size.Width) / 2 + 20, (Me.Size.Height - GroupBox1.Size.Height) / 2 + 10) ' Position the logo at the top left corner
-                Me.Controls.Add(iitgLogoPictureBox)
-            Else
-                MessageBox.Show("The image file '" & imagePath & "' could not be found.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
+            ' Set PictureBox properties
+            iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
+            iitgLogoPictureBox.Size = New Size(50, 50) ' Set the size of the logo PictureBox
+            iitgLogoPictureBox.Location = New Point(GroupBox1.Location.X + ((GroupBox1.Size.Width - iitgLogoPictureBox.Size.Width) / 2), GroupBox1.Location.Y + 20) ' Position the logo at the top left corner
+
+
+            Me.Controls.Add(iitgLogoPictureBox)
+            iitgLogoPictureBox.BringToFront()
         Catch ex As Exception
             ' Handle file loading errors
             MessageBox.Show("An error occurred while loading the image: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
