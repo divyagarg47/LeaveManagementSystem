@@ -28,8 +28,8 @@ Partial Class ApplyLeaveForm
         Me.ReasonTextBox = New System.Windows.Forms.TextBox()
         Me.SubmitButton = New System.Windows.Forms.Button()
         Me.PanelInput = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelInput.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -53,9 +53,9 @@ Partial Class ApplyLeaveForm
         '
         Me.LeaveTypeComboBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LeaveTypeComboBox.FormattingEnabled = True
-        Me.LeaveTypeComboBox.Location = New System.Drawing.Point(169, 199)
+        Me.LeaveTypeComboBox.Location = New System.Drawing.Point(142, 199)
         Me.LeaveTypeComboBox.Name = "LeaveTypeComboBox"
-        Me.LeaveTypeComboBox.Size = New System.Drawing.Size(165, 28)
+        Me.LeaveTypeComboBox.Size = New System.Drawing.Size(214, 28)
         Me.LeaveTypeComboBox.TabIndex = 2
         Me.LeaveTypeComboBox.Text = "Select Leave Type"
         '
@@ -95,16 +95,6 @@ Partial Class ApplyLeaveForm
         Me.PanelInput.TabIndex = 5
         Me.PanelInput.TabStop = False
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(69, 108)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(105, 25)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Start Date:"
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -114,6 +104,16 @@ Partial Class ApplyLeaveForm
         Me.Label2.Size = New System.Drawing.Size(99, 25)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "End Date:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(69, 108)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(105, 25)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Start Date:"
         '
         'ApplyLeaveForm
         '

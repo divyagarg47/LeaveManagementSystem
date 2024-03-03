@@ -13,7 +13,9 @@ Public Class ApplyLeaveForm
 
     Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ApplyLeave_UI()
-        LeaveTypeComboBox.Items.Insert(0, New List(Of String) From {"Medical", "Vacation", "Casual"})
+        LeaveTypeComboBox.Items.Add("Medical")
+        LeaveTypeComboBox.Items.Add("Vacation")
+        LeaveTypeComboBox.Items.Add("Casual")
 
     End Sub
     'Button connections
