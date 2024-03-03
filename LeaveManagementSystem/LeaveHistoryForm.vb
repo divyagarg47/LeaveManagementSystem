@@ -17,19 +17,24 @@ Public Class LeaveHistoryForm
     'Button connections
     Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
         Me.Hide()
-        ApplyLeaveForm.Show()
+
+        Dim applyLeaveForm As New ApplyLeaveForm()
+        applyLeaveForm.Show()
     End Sub
     Private Sub btnNewLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
         'work as home page
         Me.Hide()
-        HomePageForm.Show()
+        Dim homePageForm As New HomePageForm()
+        homePageForm.Show()
     End Sub
 
 
-    Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
+    Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
         'work as home page
         Me.Hide()
-        ApproveNewLeave.Show()
+        Dim approveNewForm As New ApproveNewLeave()
+        approveNewForm.Show()
+
     End Sub
     ' Declare the button with WithEvents keyword
     Private WithEvents logoutButton As New Button()
@@ -43,8 +48,8 @@ Public Class LeaveHistoryForm
         ' Set up form properties
         Me.Text = "Leave History"
         Me.Size = New Size(1000, 1000)
-        FetchLeaveHistory()
         LeaveHistory_UI()
+        FetchLeaveHistory()
         ' Set background color programmatically
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub
@@ -127,7 +132,7 @@ Public Class LeaveHistoryForm
         Me.Controls.Add(logoutButton) ' Add the button to the form
 
         ' Attach the event handler using AddHandler
-        AddHandler logoutButton.Click, AddressOf HomePageForm.LogoutButton_Click
+        AddHandler logoutButton.Click, AddressOf LogoutButton_Click
 
 
     End Sub
@@ -174,6 +179,17 @@ Public Class LeaveHistoryForm
 
 
 
+    ' Event handler method for the logout button click event
+    Public Sub LogoutButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+        ' Add logout functionality here
+        GlobalVariables.Email = ""
+        GlobalVariables.Designation = ""
+
+        Me.Hide()
+
+        LoginForm.Show()
+        MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvLeaveHistory.CellContentClick
 

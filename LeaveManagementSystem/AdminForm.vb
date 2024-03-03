@@ -9,6 +9,11 @@ Public Class AdminForm
     ' Declare the button with WithEvents keyword
     Private WithEvents logoutButton As New Button()
     Private Sub AdminForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+        
+    End Sub
+    Public Sub New()
+        ' This call is required by the designer.
+        InitializeComponent()
         Me.Text = "Admin Form"
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
         AdminForm_UI()
@@ -28,7 +33,6 @@ Public Class AdminForm
         ComboBoxActions.Items.Add("delete")
         ComboBoxActions.Items.Add("update")
     End Sub
-
     Private Function ConstructInsertQuery(ByVal table As String, ByVal values As String) As String
         ' Parse the comma-separated values entered by the user
         Dim parts() As String = values.Split(","c)
@@ -123,18 +127,38 @@ Public Class AdminForm
 
         Try
             connection.Open()
+
+            ' Get schema of the table
+            Dim schemaQuery As String = "SELECT * FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = @TableName"
+            Dim schemaCommand As New MySqlCommand(schemaQuery, connection)
+            schemaCommand.Parameters.AddWithValue("@TableName", selectedTable)
+
+            Dim schemaAdapter As New MySqlDataAdapter(schemaCommand)
+            Dim schemaTable As New DataTable()
+            schemaAdapter.Fill(schemaTable)
+
+            ' Clear existing columns in DataGridView
+            DataGridView1.Columns.Clear()
+
+            ' Add columns to DataGridView based on table schema
+            'For Each row As DataRow In schemaTable.Rows
+            'Dim columnName As String = row("column_name").ToString()
+            'DataGridView1.Columns.Add(columnName, columnName)
+            'Next
+
+            ' Fill DataGridView with data
             Dim command As New MySqlCommand(query, connection)
             Dim adapter As New MySqlDataAdapter(command)
-            Dim table As New DataTable()
-            adapter.Fill(table)
-            DataGridView1.DataSource = table
+            Dim dataTable As New DataTable()
+            adapter.Fill(dataTable)
+            DataGridView1.DataSource = dataTable
+
         Catch ex As Exception
             MessageBox.Show("Error loading data: " & ex.Message)
         Finally
             connection.Close()
         End Try
     End Sub
-
     Private Sub AdminForm_UI()
         Me.WindowState = FormWindowState.Maximized
         DataGridView1.Location = New Point((Me.Size.Width - DataGridView1.Size.Width) / 2, (Me.Size.Height - DataGridView1.Size.Height) / 2)

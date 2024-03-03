@@ -42,8 +42,9 @@ Public Class LoginForm
                 ' Hide the login form and show the appropriate form based on designation
                 Me.Hide()
                 Dim homePageForm As New HomePageForm()
+                Dim adminPageForm As New AdminForm()
                 If designation = "admin" Then
-                    AdminForm.Show()
+                    adminPageForm.Show()
                 Else
                     homePageForm.Show()
                 End If
@@ -132,4 +133,7 @@ Public Class LoginForm
         ChangePasswordForm.Show()
     End Sub
 
+    Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles GroupBox1.Enter
+
+    End Sub
 End Class

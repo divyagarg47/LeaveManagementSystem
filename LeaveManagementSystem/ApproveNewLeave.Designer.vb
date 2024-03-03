@@ -29,18 +29,21 @@ Partial Class ApproveNewLeave
         'dataGridViewLeaveRequests
         '
         Me.dataGridViewLeaveRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataGridViewLeaveRequests.Location = New System.Drawing.Point(12, 12)
+        Me.dataGridViewLeaveRequests.Location = New System.Drawing.Point(29, 52)
+        Me.dataGridViewLeaveRequests.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.dataGridViewLeaveRequests.Name = "dataGridViewLeaveRequests"
+        Me.dataGridViewLeaveRequests.ReadOnly = True
         Me.dataGridViewLeaveRequests.RowTemplate.Height = 28
-        Me.dataGridViewLeaveRequests.Size = New System.Drawing.Size(549, 438)
+        Me.dataGridViewLeaveRequests.Size = New System.Drawing.Size(1017, 464)
         Me.dataGridViewLeaveRequests.TabIndex = 0
         '
         'ApproveNewLeave
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(573, 462)
+        Me.ClientSize = New System.Drawing.Size(1569, 566)
         Me.Controls.Add(Me.dataGridViewLeaveRequests)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "ApproveNewLeave"
         Me.Text = "ApproveNewLeave"
         CType(Me.dataGridViewLeaveRequests, System.ComponentModel.ISupportInitialize).EndInit()

@@ -30,6 +30,7 @@ Partial Class ApplyLeaveForm
         Me.PanelInput = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.PanelInput.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -62,11 +63,10 @@ Partial Class ApplyLeaveForm
         'ReasonTextBox
         '
         Me.ReasonTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ReasonTextBox.Location = New System.Drawing.Point(27, 251)
+        Me.ReasonTextBox.Location = New System.Drawing.Point(27, 283)
         Me.ReasonTextBox.Name = "ReasonTextBox"
         Me.ReasonTextBox.Size = New System.Drawing.Size(457, 26)
         Me.ReasonTextBox.TabIndex = 3
-        Me.ReasonTextBox.Text = "Reason(Optional)"
         '
         'SubmitButton
         '
@@ -81,6 +81,7 @@ Partial Class ApplyLeaveForm
         'PanelInput
         '
         Me.PanelInput.BackColor = System.Drawing.Color.White
+        Me.PanelInput.Controls.Add(Me.Label3)
         Me.PanelInput.Controls.Add(Me.Label2)
         Me.PanelInput.Controls.Add(Me.Label1)
         Me.PanelInput.Controls.Add(Me.SubmitButton)
@@ -115,6 +116,16 @@ Partial Class ApplyLeaveForm
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Start Date:"
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(22, 246)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(166, 25)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "Reason(Optional)"
+        '
         'ApplyLeaveForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -136,4 +147,5 @@ Partial Class ApplyLeaveForm
     Friend WithEvents PanelInput As System.Windows.Forms.GroupBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class

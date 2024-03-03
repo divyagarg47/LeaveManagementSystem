@@ -22,21 +22,24 @@ Public Class HomePageForm
     'Button connections
     Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
         Me.Hide()
-        LeaveHistoryForm.Show()
+
+        Dim leaveHistoryForm As New LeaveHistoryForm()
+        leaveHistoryForm.Show()
     End Sub
     Private Sub btnNewLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
         Me.Hide()
-        ApplyLeaveForm.Show()
+        Dim applyLeaveForm As New ApplyLeaveForm()
+        applyLeaveForm.Show()
     End Sub
     Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
+
         Me.Hide()
-        ApproveNewLeave.Show()
+        Dim approveNewForm As New ApproveNewLeave()
+        approveNewForm.Show()
     End Sub
 
     Private Sub HomePageForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
 
-        LoadUserInfo()
-        Load_UI()
     End Sub
     ' Function to load user information
     Private Sub LoadUserInfo()
@@ -114,7 +117,10 @@ Public Class HomePageForm
 
         ' Set up form properties
         Me.Text = "Home Page"
-        Me.Size = New Size(800, 600)
+        Me.Size = New Size(1000, 1000)
+
+        LoadUserInfo()
+        Load_UI()
         ' Load user information when the form loads
         ' Set background color programmatically
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
@@ -162,7 +168,7 @@ Public Class HomePageForm
 
         ' Add a header label
         Dim headerLabel As New Label()
-        headerLabel.Text = "Welcome to IITG Leave Management System"
+        headerLabel.Text = "IITG Leave Management System"
         headerLabel.AutoSize = True
         headerLabel.Font = New Font("Arial", 24, FontStyle.Bold) ' Increase font size
         headerLabel.Location = New Point((Me.ClientSize.Width - headerLabel.Width) \ 3, 20)
@@ -279,6 +285,7 @@ Public Class HomePageForm
         departmentLabel.Text = ""
         typeofstafflabel.Text = ""
         Me.Hide()
+
         LoginForm.Show()
         MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub

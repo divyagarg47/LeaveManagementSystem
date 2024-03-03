@@ -13,26 +13,26 @@ Public Class ApplyLeaveForm
 
     Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        ApplyLeave_UI()
-        LeaveTypeComboBox.Items.Add("Medical")
-        LeaveTypeComboBox.Items.Add("Vacation")
-        LeaveTypeComboBox.Items.Add("Casual")
 
     End Sub
 
     'Button connections
     Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
+
         Me.Hide()
-        LeaveHistoryForm.Show()
+        Dim leaveHistoryForm As New LeaveHistoryForm()
+        leaveHistoryForm.Show()
     End Sub
     Private Sub btnNewLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
         'work as home page
         Me.Hide()
-        HomePageForm.Show()
+        Dim homePageForm As New HomePageForm()
+        homePageForm.Show()
     End Sub
     Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
         Me.Hide()
-        ApproveNewLeave.Show()
+        Dim approveNewForm As New ApproveNewLeave()
+        approveNewForm.Show()
     End Sub
     ' Declare the button with WithEvents keyword
     Private WithEvents logoutButton As New Button()
@@ -45,7 +45,12 @@ Public Class ApplyLeaveForm
 
         ' Set up form properties
         Me.Text = "Apply Leave"
-        Me.Size = New Size(800, 600)
+        Me.Size = New Size(1000, 1000)
+
+        ApplyLeave_UI()
+        LeaveTypeComboBox.Items.Add("Medical")
+        LeaveTypeComboBox.Items.Add("Vacation")
+        LeaveTypeComboBox.Items.Add("Casual")
         ' Set background color programmatically
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub
@@ -128,9 +133,21 @@ Public Class ApplyLeaveForm
         Me.Controls.Add(logoutButton) ' Add the button to the form
 
         ' Attach the event handler using AddHandler
-        AddHandler logoutButton.Click, AddressOf HomePageForm.LogoutButton_Click
+        AddHandler logoutButton.Click, AddressOf LogoutButton_Click
 
 
+    End Sub
+
+    ' Event handler method for the logout button click event
+    Public Sub LogoutButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+        ' Add logout functionality here
+        GlobalVariables.Email = ""
+        GlobalVariables.Designation = ""
+
+        Me.Hide()
+
+        LoginForm.Show()
+        MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
     Private Sub SubmitButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SubmitButton.Click
         ' Perform validation before submitting
