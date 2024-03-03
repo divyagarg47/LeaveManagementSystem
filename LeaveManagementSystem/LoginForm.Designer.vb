@@ -35,27 +35,30 @@ Partial Class LoginForm
         'btnLogin
         '
         Me.btnLogin.BackColor = System.Drawing.Color.Turquoise
-        Me.btnLogin.Location = New System.Drawing.Point(63, 137)
+        Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogin.Location = New System.Drawing.Point(214, 240)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(100, 32)
+        Me.btnLogin.Size = New System.Drawing.Size(100, 40)
         Me.btnLogin.TabIndex = 0
         Me.btnLogin.Text = "Login"
         Me.btnLogin.UseVisualStyleBackColor = False
         '
         'txtUserID
         '
-        Me.txtUserID.Location = New System.Drawing.Point(63, 47)
+        Me.txtUserID.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUserID.Location = New System.Drawing.Point(159, 142)
         Me.txtUserID.Name = "txtUserID"
-        Me.txtUserID.Size = New System.Drawing.Size(100, 22)
+        Me.txtUserID.Size = New System.Drawing.Size(207, 26)
         Me.txtUserID.TabIndex = 1
         Me.txtUserID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(63, 98)
+        Me.txtPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPassword.Location = New System.Drawing.Point(159, 207)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(100, 22)
+        Me.txtPassword.Size = New System.Drawing.Size(207, 26)
         Me.txtPassword.TabIndex = 2
         Me.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -68,36 +71,39 @@ Partial Class LoginForm
         Me.GroupBox1.Controls.Add(Me.txtPassword)
         Me.GroupBox1.Controls.Add(Me.btnLogin)
         Me.GroupBox1.Controls.Add(Me.txtUserID)
-        Me.GroupBox1.Location = New System.Drawing.Point(508, 201)
+        Me.GroupBox1.Location = New System.Drawing.Point(198, 65)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(223, 244)
+        Me.GroupBox1.Size = New System.Drawing.Size(522, 437)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(60, 78)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(156, 175)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 17)
+        Me.Label2.Size = New System.Drawing.Size(98, 25)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Password"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(60, 27)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(156, 110)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(51, 17)
+        Me.Label1.Size = New System.Drawing.Size(74, 25)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "IITG ID"
         '
         'Button1
         '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.DarkTurquoise
-        Me.Button1.Location = New System.Drawing.Point(23, 187)
+        Me.Button1.Location = New System.Drawing.Point(159, 287)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(180, 29)
+        Me.Button1.Size = New System.Drawing.Size(207, 39)
         Me.Button1.TabIndex = 3
         Me.Button1.Text = "Change Password"
         Me.Button1.UseVisualStyleBackColor = True

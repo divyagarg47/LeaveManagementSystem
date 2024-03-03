@@ -36,38 +36,38 @@ Partial Class ChangePasswordForm
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(42, 45)
-        Me.txtEmail.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEmail.Location = New System.Drawing.Point(188, 114)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(155, 26)
+        Me.txtEmail.Size = New System.Drawing.Size(138, 26)
         Me.txtEmail.TabIndex = 0
         Me.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtOldPassword
         '
-        Me.txtOldPassword.Location = New System.Drawing.Point(42, 99)
-        Me.txtOldPassword.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtOldPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtOldPassword.Location = New System.Drawing.Point(188, 179)
         Me.txtOldPassword.Name = "txtOldPassword"
-        Me.txtOldPassword.Size = New System.Drawing.Size(155, 26)
+        Me.txtOldPassword.Size = New System.Drawing.Size(138, 26)
         Me.txtOldPassword.TabIndex = 1
         Me.txtOldPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtNewPassword
         '
-        Me.txtNewPassword.Location = New System.Drawing.Point(42, 153)
-        Me.txtNewPassword.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewPassword.Location = New System.Drawing.Point(188, 244)
         Me.txtNewPassword.Name = "txtNewPassword"
-        Me.txtNewPassword.Size = New System.Drawing.Size(155, 26)
+        Me.txtNewPassword.Size = New System.Drawing.Size(138, 26)
         Me.txtNewPassword.TabIndex = 2
         Me.txtNewPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'btnChangePassword
         '
         Me.btnChangePassword.BackColor = System.Drawing.Color.Turquoise
-        Me.btnChangePassword.Location = New System.Drawing.Point(70, 200)
-        Me.btnChangePassword.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnChangePassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnChangePassword.Location = New System.Drawing.Point(204, 277)
         Me.btnChangePassword.Name = "btnChangePassword"
-        Me.btnChangePassword.Size = New System.Drawing.Size(96, 50)
+        Me.btnChangePassword.Size = New System.Drawing.Size(100, 40)
         Me.btnChangePassword.TabIndex = 3
         Me.btnChangePassword.Text = "Change"
         Me.btnChangePassword.UseVisualStyleBackColor = False
@@ -83,21 +83,19 @@ Partial Class ChangePasswordForm
         Me.GroupBox1.Controls.Add(Me.txtNewPassword)
         Me.GroupBox1.Controls.Add(Me.txtOldPassword)
         Me.GroupBox1.Controls.Add(Me.txtEmail)
-        Me.GroupBox1.Location = New System.Drawing.Point(47, 26)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupBox1.Location = New System.Drawing.Point(52, 21)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox1.Size = New System.Drawing.Size(238, 330)
+        Me.GroupBox1.Size = New System.Drawing.Size(522, 437)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         '
         'btnBack
         '
+        Me.btnBack.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBack.ForeColor = System.Drawing.Color.DarkTurquoise
-        Me.btnBack.Location = New System.Drawing.Point(42, 270)
-        Me.btnBack.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnBack.Location = New System.Drawing.Point(188, 324)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(155, 36)
+        Me.btnBack.Size = New System.Drawing.Size(138, 39)
         Me.btnBack.TabIndex = 8
         Me.btnBack.Text = "Back"
         Me.btnBack.UseVisualStyleBackColor = True
@@ -105,38 +103,40 @@ Partial Class ChangePasswordForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(38, 129)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(186, 212)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(113, 20)
+        Me.Label3.Size = New System.Drawing.Size(142, 25)
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "New Password"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(38, 75)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(186, 147)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(106, 20)
+        Me.Label2.Size = New System.Drawing.Size(134, 25)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Old Password"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(38, 21)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(186, 82)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(62, 20)
+        Me.Label1.Size = New System.Drawing.Size(74, 25)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "IITG ID"
         '
         'ChangePasswordForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.AliceBlue
-        Me.ClientSize = New System.Drawing.Size(331, 415)
+        Me.ClientSize = New System.Drawing.Size(713, 538)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ChangePasswordForm"
         Me.Text = "ChangePasswordForm"
         Me.GroupBox1.ResumeLayout(False)

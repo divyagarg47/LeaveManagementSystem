@@ -96,4 +96,16 @@ Public Class LoginForm
         ChangePasswordForm.Show()
     End Sub
 
+    Private Sub txtUserID_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtUserID.TextChanged
+
+    End Sub
+    Private Sub Label2_Click(sender As System.Object, e As System.EventArgs) Handles Label2.Click
+
+    End Sub
+    Private Sub txtPassword_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtPassword.TextChanged
+
+    End Sub
+    Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
+
+    End Sub
 End Class
