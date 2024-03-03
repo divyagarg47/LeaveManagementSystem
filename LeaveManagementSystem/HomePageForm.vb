@@ -265,14 +265,14 @@ Public Class HomePageForm
         GlobalVariables.Email = ""
         GlobalVariables.Designation = ""
 
-        Dim userEmail = ""
-        Dim userName = ""
-        Public designationLabel.Text = ""
-        Public iitgIdLabel As New Label()
-        Public rollNoLabel As New Label()
-        Public programLabel As New Label()
-        Public departmentLabel As New Label()
-        Public typeofstafflabel As New Label()
+        userEmail = ""
+        userName = ""
+        designationLabel.Text = ""
+        iitgIdLabel.Text = ""
+        rollNoLabel.Text = ""
+        programLabel.Text = ""
+        departmentLabel.Text = ""
+        typeofstafflabel.Text = ""
         Me.Hide()
         LoginForm.Show()
         MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)

@@ -10,6 +10,10 @@ Public Class ApplyLeaveForm
     Private WithEvents btnNewLeave As New Button()
     Private WithEvents btnApproveLeave As New Button()
 
+
+    Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ApplyLeave_UI()
+    End Sub
     'Button connections
     Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
         Me.Hide()
@@ -39,7 +43,7 @@ Public Class ApplyLeaveForm
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub
 
-    Private Sub ApplyLeave_UI(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub ApplyLeave_UI()
         Me.WindowState = FormWindowState.Maximized
         ' Add the menu panel
         Dim menuPanel As New Panel()
@@ -493,8 +497,4 @@ Public Class ApplyLeaveForm
 
         Return approverName
     End Function
-
-    Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ApplyLeave_UI()
-    End Sub
 End Class
