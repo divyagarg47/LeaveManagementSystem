@@ -112,7 +112,7 @@ Public Class HomePageForm
 
         ' Set up form properties
         Me.Text = "Home Page"
-        'Me.Size = New Size(800, 600)
+        Me.Size = New Size(800, 600)
         ' Load user information when the form loads
         LoadUserInfo()
         Load_UI()

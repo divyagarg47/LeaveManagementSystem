@@ -42,7 +42,7 @@ Public Class LeaveHistoryForm
 
         ' Set up form properties
         Me.Text = "Leave History"
-        'Me.Size = New Size(800, 600)
+        Me.Size = New Size(800, 600)
         FetchLeaveHistory()
         LeaveHistory_UI()
         ' Set background color programmatically

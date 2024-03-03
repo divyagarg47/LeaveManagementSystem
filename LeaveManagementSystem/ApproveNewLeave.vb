@@ -16,6 +16,7 @@ Public Class ApproveNewLeave
 
         ' Set up form properties
         Me.Text = "Apply Leave"
+        Me.Size = New Size(800, 600)
         InitializeDataGridView()
         LoadLeaveRequestsData()
         ' Set background color programmatically

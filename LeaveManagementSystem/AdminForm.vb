@@ -21,6 +21,7 @@ Public Class AdminForm
 
         ' Set up form properties
         Me.Text = "Admin Form"
+        Me.Size = New Size(800, 600)
         ' Add table names to the dropdown
         AdminForm_UI()
         ComboBoxTables.Items.Add("student")

@@ -41,6 +41,7 @@ Public Class ApplyLeaveForm
 
         ' Set up form properties
         Me.Text = "Apply Leave"
+        Me.Size = New Size(800, 600)
         ApplyLeave_UI()
         LeaveTypeComboBox.Items.Add("Medical")
         LeaveTypeComboBox.Items.Add("Vacation")
