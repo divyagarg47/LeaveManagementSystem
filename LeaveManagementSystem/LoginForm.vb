@@ -26,7 +26,8 @@ Public Class LoginForm
                 txtUserID.Text = ""
                 txtPassword.Text = ""
                 Me.Hide()
-                HomePageForm.Show()
+                Dim homePageForm As New HomePageForm()
+                homePageForm.Show()
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("Incorrect Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
