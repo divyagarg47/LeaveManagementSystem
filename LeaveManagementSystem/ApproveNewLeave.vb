@@ -15,7 +15,7 @@ Public Class ApproveNewLeave
         ' Add any initialization after the InitializeComponent() call.
 
         ' Set up form properties
-        Me.Text = "Apply Leave"
+        Me.Text = "Approve Leave"
         Me.Size = New Size(800, 600)
         InitializeDataGridView()
         LoadLeaveRequestsData()

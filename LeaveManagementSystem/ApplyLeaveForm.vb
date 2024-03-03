@@ -78,7 +78,7 @@ Public Class ApplyLeaveForm
             ' Add "Approve Leave" button
             btnApproveLeave.Visible = True
             btnApproveLeave.Enabled = True
-            btnApproveLeave.Text = HomePageForm.designationLabel.Text
+            btnApproveLeave.Text = "Approve Leave"
             btnApproveLeave.Size = New Size(120, 30)
             btnApproveLeave.Location = New Point(15, 200)
             btnApproveLeave.ForeColor = Color.White ' Set font color
