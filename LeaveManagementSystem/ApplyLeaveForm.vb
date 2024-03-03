@@ -22,7 +22,9 @@ Public Class ApplyLeaveForm
         LeaveHistoryForm.Show()
     End Sub
     Private Sub btnNewLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
-        'no work dummy
+        'work as home page
+        Me.Hide()
+        HomePageForm.Show()
     End Sub
     Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
         Me.Hide()
@@ -38,7 +40,7 @@ Public Class ApplyLeaveForm
         ' Add any initialization after the InitializeComponent() call.
 
         ' Set up form properties
-        Me.Text = "Home Page"
+        Me.Text = "Apply Leave"
         Me.Size = New Size(800, 600)
 
         ' Set background color programmatically
@@ -61,7 +63,7 @@ Public Class ApplyLeaveForm
         btnLeaveHistory.ForeColor = Color.White ' Set font color
         menuPanel.Controls.Add(btnLeaveHistory)
 
-        btnNewLeave.Text = "Apply New Leave"
+        btnNewLeave.Text = "Home Page"
         btnNewLeave.Size = New Size(120, 30)
         btnNewLeave.Location = New Point(15, 100)
         btnNewLeave.ForeColor = Color.White ' Set font color
@@ -69,24 +71,31 @@ Public Class ApplyLeaveForm
 
 
         ' Check if the user's designation is not student, faculty, or staff
-        If Not (HomePageForm.designationLabel.Text = "Designation: student" Or HomePageForm.designationLabel.Text = "Designation: faculty" Or HomePageForm.designationLabel.Text = "Designation: staff" Or HomePageForm.designationLabel.Text = "Designation: admin") Then
+        If Not (GlobalVariables.Designation = "student" Or GlobalVariables.Designation = "faculty" Or GlobalVariables.Designation = "staff" Or GlobalVariables.Designation = "admin") Then
             ' Add "Approve Leave" button
-            btnApproveLeave.Text = "Approve Leave"
+            btnApproveLeave.Visible = True
+            btnApproveLeave.Enabled = True
+            btnApproveLeave.Text = HomePageForm.designationLabel.Text
             btnApproveLeave.Size = New Size(120, 30)
             btnApproveLeave.Location = New Point(15, 200)
             btnApproveLeave.ForeColor = Color.White ' Set font color
             menuPanel.Controls.Add(btnApproveLeave)
+        Else
+            btnApproveLeave.Visible = False
+            btnApproveLeave.Enabled = False
         End If
 
 
 
         ' Add a header label
         Dim headerLabel As New Label()
-        headerLabel.Text = "Welcome to IITG Leave Management System"
+        headerLabel.Text = "IITG Leave Management System"
         headerLabel.AutoSize = True
         headerLabel.Font = New Font("Arial", 24, FontStyle.Bold) ' Increase font size
-        headerLabel.Location = New Point((Me.ClientSize.Width - headerLabel.Width) \ 3, 20)
+        headerLabel.Location = New Point((Me.ClientSize.Width - 100 - headerLabel.Width) \ 2 - 50, 20)
         Me.Controls.Add(headerLabel)
+
+        PanelInput.Location = New Point(menuPanel.Width + (Me.Width - menuPanel.Size.Width - PanelInput.Size.Width) / 2, (Me.Height - 150 - PanelInput.Size.Height) / 2)
 
 
 
@@ -501,6 +510,10 @@ Public Class ApplyLeaveForm
     End Function
 
     Private Sub LeaveTypeComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles LeaveTypeComboBox.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles PanelInput.Enter
 
     End Sub
 End Class

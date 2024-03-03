@@ -27,62 +27,105 @@ Partial Class ApplyLeaveForm
         Me.LeaveTypeComboBox = New System.Windows.Forms.ComboBox()
         Me.ReasonTextBox = New System.Windows.Forms.TextBox()
         Me.SubmitButton = New System.Windows.Forms.Button()
+        Me.PanelInput = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.PanelInput.SuspendLayout()
         Me.SuspendLayout()
         '
         'StartDate
         '
-        Me.StartDate.Location = New System.Drawing.Point(36, 65)
+        Me.StartDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StartDate.Location = New System.Drawing.Point(27, 149)
         Me.StartDate.Name = "StartDate"
-        Me.StartDate.Size = New System.Drawing.Size(200, 22)
+        Me.StartDate.Size = New System.Drawing.Size(200, 26)
         Me.StartDate.TabIndex = 0
         '
         'EndDate
         '
-        Me.EndDate.Location = New System.Drawing.Point(295, 65)
+        Me.EndDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EndDate.Location = New System.Drawing.Point(284, 149)
         Me.EndDate.Name = "EndDate"
-        Me.EndDate.Size = New System.Drawing.Size(200, 22)
+        Me.EndDate.Size = New System.Drawing.Size(200, 26)
         Me.EndDate.TabIndex = 1
         '
         'LeaveTypeComboBox
         '
+        Me.LeaveTypeComboBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LeaveTypeComboBox.FormattingEnabled = True
-        Me.LeaveTypeComboBox.Location = New System.Drawing.Point(180, 119)
+        Me.LeaveTypeComboBox.Location = New System.Drawing.Point(169, 199)
         Me.LeaveTypeComboBox.Name = "LeaveTypeComboBox"
-        Me.LeaveTypeComboBox.Size = New System.Drawing.Size(156, 24)
+        Me.LeaveTypeComboBox.Size = New System.Drawing.Size(165, 28)
         Me.LeaveTypeComboBox.TabIndex = 2
         Me.LeaveTypeComboBox.Text = "Select Leave Type"
         '
         'ReasonTextBox
         '
-        Me.ReasonTextBox.Location = New System.Drawing.Point(170, 161)
+        Me.ReasonTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReasonTextBox.Location = New System.Drawing.Point(27, 251)
         Me.ReasonTextBox.Name = "ReasonTextBox"
-        Me.ReasonTextBox.Size = New System.Drawing.Size(177, 22)
+        Me.ReasonTextBox.Size = New System.Drawing.Size(457, 26)
         Me.ReasonTextBox.TabIndex = 3
         Me.ReasonTextBox.Text = "Reason(Optional)"
         '
         'SubmitButton
         '
-        Me.SubmitButton.Location = New System.Drawing.Point(212, 214)
+        Me.SubmitButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SubmitButton.Location = New System.Drawing.Point(207, 324)
         Me.SubmitButton.Name = "SubmitButton"
         Me.SubmitButton.Size = New System.Drawing.Size(89, 36)
         Me.SubmitButton.TabIndex = 4
         Me.SubmitButton.Text = "Submit"
         Me.SubmitButton.UseVisualStyleBackColor = True
         '
+        'PanelInput
+        '
+        Me.PanelInput.BackColor = System.Drawing.Color.White
+        Me.PanelInput.Controls.Add(Me.Label2)
+        Me.PanelInput.Controls.Add(Me.Label1)
+        Me.PanelInput.Controls.Add(Me.SubmitButton)
+        Me.PanelInput.Controls.Add(Me.ReasonTextBox)
+        Me.PanelInput.Controls.Add(Me.LeaveTypeComboBox)
+        Me.PanelInput.Controls.Add(Me.EndDate)
+        Me.PanelInput.Controls.Add(Me.StartDate)
+        Me.PanelInput.ForeColor = System.Drawing.Color.Black
+        Me.PanelInput.Location = New System.Drawing.Point(16, 39)
+        Me.PanelInput.Name = "PanelInput"
+        Me.PanelInput.Size = New System.Drawing.Size(508, 426)
+        Me.PanelInput.TabIndex = 5
+        Me.PanelInput.TabStop = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(69, 108)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(105, 25)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Start Date:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(334, 108)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(99, 25)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "End Date:"
+        '
         'ApplyLeaveForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(552, 338)
-        Me.Controls.Add(Me.SubmitButton)
-        Me.Controls.Add(Me.ReasonTextBox)
-        Me.Controls.Add(Me.LeaveTypeComboBox)
-        Me.Controls.Add(Me.EndDate)
-        Me.Controls.Add(Me.StartDate)
+        Me.ClientSize = New System.Drawing.Size(665, 600)
+        Me.Controls.Add(Me.PanelInput)
         Me.Name = "ApplyLeaveForm"
         Me.Text = "NewLeaveForm"
+        Me.PanelInput.ResumeLayout(False)
+        Me.PanelInput.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents StartDate As System.Windows.Forms.DateTimePicker
@@ -90,4 +133,7 @@ Partial Class ApplyLeaveForm
     Friend WithEvents LeaveTypeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents ReasonTextBox As System.Windows.Forms.TextBox
     Friend WithEvents SubmitButton As System.Windows.Forms.Button
+    Friend WithEvents PanelInput As System.Windows.Forms.GroupBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

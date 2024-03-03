@@ -40,4 +40,3 @@ C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\Leave
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.pdb
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml
-C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.AdminForm.resources
