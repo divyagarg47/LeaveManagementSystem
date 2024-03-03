@@ -125,8 +125,8 @@ Public Class HomePageForm
         ' Add the menu panel
         Dim menuPanel As New Panel()
         menuPanel.BackColor = Color.Black
-        menuPanel.Size = New Size(150, 400) ' Adjust height to fit below the logo
-        menuPanel.Location = New Point(0, 90) ' Position below the logo
+        menuPanel.Size = New Size(150, Me.Size.Height) ' Adjust height to fit below the logo
+        menuPanel.Location = New Point(0, 150) ' Position below the logo
         Me.Controls.Add(menuPanel)
 
         ' Add buttons inside the menu panel for navigation
@@ -160,7 +160,6 @@ Public Class HomePageForm
         headerLabel.Text = "Welcome to IITG Leave Management System"
         headerLabel.AutoSize = True
         headerLabel.Font = New Font("Arial", 24, FontStyle.Bold) ' Increase font size
-        headerLabel.BackColor = Color.LightGray
         headerLabel.Location = New Point((Me.ClientSize.Width - headerLabel.Width) \ 3, 20)
         Me.Controls.Add(headerLabel)
 
@@ -174,9 +173,10 @@ Public Class HomePageForm
 
             ' Set PictureBox properties
             iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
-            iitgLogoPictureBox.Size = New Size(50, 50) ' Set the size of the logo PictureBox
-            iitgLogoPictureBox.Location = New Point(20, 20) ' Position the logo at the top left corner
+            iitgLogoPictureBox.Size = New Size(100, 100) ' Set the size of the logo PictureBox
+            iitgLogoPictureBox.Location = New Point((menuPanel.Size.Width - iitgLogoPictureBox.Size.Width) / 2, 20) ' Position the logo at the top left corner
             Me.Controls.Add(iitgLogoPictureBox)
+            iitgLogoPictureBox.BringToFront()
         Catch ex As Exception
             ' Handle file loading errors
             MessageBox.Show("An error occurred while loading the image: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
