@@ -6,24 +6,13 @@ Public Class AdminForm
     Private connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
     Private connection As New MySqlConnection(connectionString)
 
-    Private Sub AdminForm_Load(ByVal sender As Object, ByVal e As EventArgs)
-       
-    End Sub
-
     ' Declare the button with WithEvents keyword
     Private WithEvents logoutButton As New Button()
-
-    Public Sub New()
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-
-        ' Set up form properties
+    Private Sub AdminForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Me.Text = "Admin Form"
-        Me.Size = New Size(800, 600)
-        ' Add table names to the dropdown
+        Me.BackColor = Color.AliceBlue ' Set your desired background color here
         AdminForm_UI()
+        ' Add table names to the dropdown
         ComboBoxTables.Items.Add("student")
         ComboBoxTables.Items.Add("faculty")
         ComboBoxTables.Items.Add("hod")
@@ -38,42 +27,8 @@ Public Class AdminForm
         ComboBoxActions.Items.Add("insert")
         ComboBoxActions.Items.Add("delete")
         ComboBoxActions.Items.Add("update")
-        ' Set background color programmatically
-        Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub
-    Private Sub AdminForm_UI()
-        Me.WindowState = FormWindowState.Maximized
-        DataGridView1.Location = New Point((Me.Size.Width - DataGridView1.Size.Width) / 2, (Me.Size.Height - DataGridView1.Size.Height) / 2)
-        ' Add a PictureBox for the IITG logo
-        Dim iitgLogoPictureBox As New PictureBox()
-        Try
-            ' Load the image file from the same directory as the application executable
-            iitgLogoPictureBox.Image = LeaveManagementSystem.My.Resources.IITG_logo
 
-            ' Set PictureBox properties
-            iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
-            iitgLogoPictureBox.Size = New Size(100, 100) ' Set the size of the logo PictureBox
-            iitgLogoPictureBox.Location = New Point((150 - iitgLogoPictureBox.Size.Width) / 2, 20) ' Position the logo at the top left corner
-            Me.Controls.Add(iitgLogoPictureBox)
-            iitgLogoPictureBox.BringToFront()
-        Catch ex As Exception
-            ' Handle file loading errors
-            MessageBox.Show("An error occurred while loading the image: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-        ' Add a logout button
-        logoutButton.Text = "Logout"
-        logoutButton.AutoSize = True
-        logoutButton.Font = New Font("Arial", 12, FontStyle.Regular)
-        ' Set the location of the logout button at the top right of the form
-        logoutButton.Location = New Point(Me.Size.Width, 20)
-        Me.Controls.Add(logoutButton) ' Add the button to the form
-
-        ' Attach the event handler using AddHandler
-        AddHandler logoutButton.Click, AddressOf HomePageForm.LogoutButton_Click
-
-
-    End Sub
     Private Function ConstructInsertQuery(ByVal table As String, ByVal values As String) As String
         ' Parse the comma-separated values entered by the user
         Dim parts() As String = values.Split(","c)
@@ -180,7 +135,40 @@ Public Class AdminForm
         End Try
     End Sub
 
-    Private Sub AdminForm_Load_1(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub AdminForm_UI()
+        Me.WindowState = FormWindowState.Maximized
+        DataGridView1.Location = New Point((Me.Size.Width - DataGridView1.Size.Width) / 2, (Me.Size.Height - DataGridView1.Size.Height) / 2)
+        ' Add a PictureBox for the IITG logo
+        Dim iitgLogoPictureBox As New PictureBox()
+        Try
+            ' Load the image file from the same directory as the application executable
+            iitgLogoPictureBox.Image = LeaveManagementSystem.My.Resources.IITG_logo
+
+            ' Set PictureBox properties
+            iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
+            iitgLogoPictureBox.Size = New Size(100, 100) ' Set the size of the logo PictureBox
+            iitgLogoPictureBox.Location = New Point((150 - iitgLogoPictureBox.Size.Width) / 2, 20) ' Position the logo at the top left corner
+            Me.Controls.Add(iitgLogoPictureBox)
+            iitgLogoPictureBox.BringToFront()
+        Catch ex As Exception
+            ' Handle file loading errors
+            MessageBox.Show("An error occurred while loading the image: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        ComboBoxTables.Location = New Point(DataGridView1.Location.X, ComboBoxTables.Height)
+        ComboBoxActions.Location = New Point(DataGridView1.Location.X, ComboBoxTables.Height + 50)
+        GroupBox1.Location = New Point(DataGridView1.Location.X, DataGridView1.Location.Y + DataGridView1.Size.Height)
+
+        ' Add a logout button
+        logoutButton.Text = "Logout"
+        logoutButton.AutoSize = True
+        logoutButton.Font = New Font("Arial", 12, FontStyle.Regular)
+        ' Set the location of the logout button at the top right of the form
+        logoutButton.Location = New Point(Me.Size.Width, 20)
+        Me.Controls.Add(logoutButton) ' Add the button to the form
+
+        ' Attach the event handler using AddHandler
+        AddHandler logoutButton.Click, AddressOf HomePageForm.LogoutButton_Click
+
 
     End Sub
 End Class
