@@ -40,6 +40,7 @@ C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\Leave
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.pdb
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml
+<<<<<<< HEAD
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.exe
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.xml
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
@@ -53,3 +54,6 @@ D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\Le
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.exe
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.pdb
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml
+=======
+C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.AdminForm.resources
+>>>>>>> 967526558e3831bce1fc1ca81301e25e45092eb0
