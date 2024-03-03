@@ -32,7 +32,7 @@ Partial Class LeaveHistoryForm
         Me.dgvLeaveHistory.Location = New System.Drawing.Point(49, 60)
         Me.dgvLeaveHistory.Name = "dgvLeaveHistory"
         Me.dgvLeaveHistory.RowTemplate.Height = 24
-        Me.dgvLeaveHistory.Size = New System.Drawing.Size(907, 398)
+        Me.dgvLeaveHistory.Size = New System.Drawing.Size(1196, 398)
         Me.dgvLeaveHistory.TabIndex = 0
         '
         'LeaveHistoryForm

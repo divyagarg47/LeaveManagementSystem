@@ -179,4 +179,7 @@ Public Class AdminForm
         End Try
     End Sub
 
+    Private Sub AdminForm_Load_1(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

@@ -12,12 +12,10 @@ Public Class ApplyLeaveForm
 
 
     Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ApplyLeave_UI()
-        LeaveTypeComboBox.Items.Add("Medical")
-        LeaveTypeComboBox.Items.Add("Vacation")
-        LeaveTypeComboBox.Items.Add("Casual")
+        
 
     End Sub
+
     'Button connections
     Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
         Me.Hide()
@@ -43,8 +41,10 @@ Public Class ApplyLeaveForm
 
         ' Set up form properties
         Me.Text = "Apply Leave"
-        Me.Size = New Size(800, 600)
-
+        ApplyLeave_UI()
+        LeaveTypeComboBox.Items.Add("Medical")
+        LeaveTypeComboBox.Items.Add("Vacation")
+        LeaveTypeComboBox.Items.Add("Casual")
         ' Set background color programmatically
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub
@@ -175,16 +175,18 @@ Public Class ApplyLeaveForm
 
     Private Sub ShowConfirmationModal(ByVal start As Date, ByVal endd As Date)
         ' Construct confirmation message
+        ' Construct confirmation message
         Dim confirmationMessage As String = "Leave Application Summary:" & vbCrLf &
                                             "Start Date: " & start.ToString("MM/dd/yyyy") & vbCrLf &
                                             "End Date: " & endd.ToString("MM/dd/yyyy") & vbCrLf &
                                             "Leave Type: " & LeaveTypeComboBox.SelectedItem.ToString() & vbCrLf &
-                                            "Number of Days: " & (endd - start).Days & vbCrLf &
+                                            "Number of Days: " & CalculateNumberOfLeaves(start, endd) & vbCrLf &
                                             "Reason: " & ReasonTextBox.Text
 
         ' Display confirmation modal
         MessageBox.Show(confirmationMessage, "Leave Application Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
+
 
     Private Sub InsertLeaveApplication(ByVal start As Date, ByVal endd As Date, ByVal numberOfLeaves As Integer)
         Dim leaveId As Integer = GetNextLeaveId()
@@ -202,6 +204,7 @@ Public Class ApplyLeaveForm
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
+
             ' Add parameters
             command.Parameters.AddWithValue("@leaveId", leaveId)
             command.Parameters.AddWithValue("@iitgId", iitgId)
@@ -210,9 +213,25 @@ Public Class ApplyLeaveForm
             command.Parameters.AddWithValue("@appliedOn", appliedOn)
             command.Parameters.AddWithValue("@numberOfLeaves", numberOfLeaves)
             command.Parameters.AddWithValue("@typeOfLeave", typeOfLeave)
+
+            ' Check if the approver is the director and if the director is on leave
+            If approverId = "director" Then
+                Dim directorLeaveQuery As String = "SELECT On_Leave FROM director WHERE IITG_ID = 'director'"
+                Dim directorLeaveCommand As New MySqlCommand(directorLeaveQuery, connection)
+                'directorLeaveCommand.Parameters.AddWithValue("@directorId", approverId)
+                Dim directorLeaveResult = directorLeaveCommand.ExecuteScalar()
+                'MessageBox.Show(directorLeaveResult)
+                If directorLeaveResult IsNot Nothing AndAlso directorLeaveResult.ToString = "True" Then
+                    ' Director is on leave, accept the leave application
+                    statusOfLeave = "Accepted"
+                    MessageBox.Show("Everyone up the hierarchy is on leave, so leave is accepted.")
+                End If
+            End If
+
             command.Parameters.AddWithValue("@statusOfLeave", statusOfLeave)
             command.Parameters.AddWithValue("@reason", reason)
             command.Parameters.AddWithValue("@approverId", approverId)
+
             command.ExecuteNonQuery()
         Catch ex As Exception
             MessageBox.Show("Error inserting leave application: " & ex.Message)
@@ -294,96 +313,164 @@ Public Class ApplyLeaveForm
 
     Private Function GetStudentApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
-        ' Query the student table to get the Approver_ID based on IITG_ID
+        Dim val As Integer = 0
+        ' Query the faculty table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM student WHERE IITG_ID = @iitgId"
+
         ' Execute query and retrieve Approver_ID
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@iitgId", iitgId)
             Dim result = command.ExecuteScalar()
+
             If Not IsDBNull(result) Then
                 approverId = result.ToString()
+                'MessageBox.Show(approverId)
+                ' Check if the approver is on leave
+                Dim leaveQuery As String = "SELECT On_Leave FROM hod WHERE IITG_ID = @approverId"
+                Dim leaveCommand As New MySqlCommand(leaveQuery, connection)
+                leaveCommand.Parameters.AddWithValue("@approverId", approverId)
+                Dim leaveResult = leaveCommand.ExecuteScalar()
+                'MessageBox.Show(leaveResult)
+                If leaveResult IsNot Nothing AndAlso leaveResult.ToString() = "True" Then
+                    ' Update the approverId to 'doaa'
+                    val = 1
+                    'approverId = GetHODApproverId(approverId)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error retrieving approverId: " & ex.Message)
         Finally
             connection.Close()
         End Try
+        If val = 1 Then
+            approverId = GetHODApproverId(approverId)
+        End If
         Return approverId
     End Function
 
     Private Function GetFacultyApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
+        Dim val As Integer = 0
         ' Query the faculty table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM faculty WHERE IITG_ID = @iitgId"
+
         ' Execute query and retrieve Approver_ID
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@iitgId", iitgId)
             Dim result = command.ExecuteScalar()
+
             If Not IsDBNull(result) Then
                 approverId = result.ToString()
+                'MessageBox.Show(approverId)
+                ' Check if the approver is on leave
+                Dim leaveQuery As String = "SELECT On_Leave FROM hod WHERE IITG_ID = @approverId"
+                Dim leaveCommand As New MySqlCommand(leaveQuery, connection)
+                leaveCommand.Parameters.AddWithValue("@approverId", approverId)
+                Dim leaveResult = leaveCommand.ExecuteScalar()
+                'MessageBox.Show(leaveResult)
+                If leaveResult IsNot Nothing AndAlso leaveResult.ToString() = "True" Then
+                    ' Update the approverId to 'doaa'
+                    val = 1
+                    'approverId = GetHODApproverId(approverId)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error retrieving approverId: " & ex.Message)
         Finally
             connection.Close()
         End Try
+        If val = 1 Then
+            approverId = GetHODApproverId(approverId)
+        End If
         Return approverId
     End Function
 
     Private Function GetHODApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
-        ' Query the hod table to get the Approver_ID based on Department and IITG_ID
+        Dim val As Integer = 0
+        ' Query the faculty table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM hod WHERE IITG_ID = @iitgId"
+
         ' Execute query and retrieve Approver_ID
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@iitgId", iitgId)
             Dim result = command.ExecuteScalar()
+
             If Not IsDBNull(result) Then
                 approverId = result.ToString()
+                'MessageBox.Show(approverId)
+                ' Check if the approver is on leave
+                Dim leaveQuery As String = "SELECT On_Leave FROM dean WHERE IITG_ID = @approverId"
+                Dim leaveCommand As New MySqlCommand(leaveQuery, connection)
+                leaveCommand.Parameters.AddWithValue("@approverId", approverId)
+                Dim leaveResult = leaveCommand.ExecuteScalar()
+                'MessageBox.Show(leaveResult)
+                If leaveResult IsNot Nothing AndAlso leaveResult.ToString() = "True" Then
+                    ' Update the approverId to 'doaa'
+                    val = 1
+                    'approverId = GetDeanApproverId(approverId)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error retrieving approverId: " & ex.Message)
         Finally
             connection.Close()
         End Try
+        If val = 1 Then
+            approverId = GetDeanApproverId(approverId)
+        End If
         Return approverId
     End Function
 
     Private Function GetDeanApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
-        ' Query the dean table to get the Approver_ID based on IITG_ID
+        Dim val As Integer = 0
+        ' Query the faculty table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM dean WHERE IITG_ID = @iitgId"
+
         ' Execute query and retrieve Approver_ID
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@iitgId", iitgId)
             Dim result = command.ExecuteScalar()
+
             If Not IsDBNull(result) Then
                 approverId = result.ToString()
+                'MessageBox.Show(approverId)
+                ' Check if the approver is on leave
+                Dim leaveQuery As String = "SELECT On_Leave FROM director WHERE IITG_ID = @approverId"
+                Dim leaveCommand As New MySqlCommand(leaveQuery, connection)
+                leaveCommand.Parameters.AddWithValue("@approverId", approverId)
+                Dim leaveResult = leaveCommand.ExecuteScalar()
+                'MessageBox.Show(leaveResult)
+                If leaveResult IsNot Nothing AndAlso leaveResult.ToString() = "True" Then
+                    ' Update the approverId to 'doaa'
+                    val = 1
+                    'approverId = GetDirectorApproverId(approverId)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error retrieving approverId: " & ex.Message)
         Finally
             connection.Close()
         End Try
+        If val = 1 Then
+            approverId = GetDirectorApproverId(approverId)
+        End If
         Return approverId
     End Function
 
     Private Function GetDirectorApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
-        ' Query the director table to get the Approver_ID based on IITG_ID
+        'Dim val As Integer = 0
+        ' Query the staff table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM director WHERE IITG_ID = @iitgId"
         ' Execute query and retrieve Approver_ID
         Try
@@ -404,67 +491,121 @@ Public Class ApplyLeaveForm
 
     Private Function GetStaffApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
-        ' Query the staff table to get the Approver_ID based on IITG_ID
+        Dim val As Integer = 0
+        ' Query the faculty table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM staff WHERE IITG_ID = @iitgId"
+
         ' Execute query and retrieve Approver_ID
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@iitgId", iitgId)
             Dim result = command.ExecuteScalar()
+
             If Not IsDBNull(result) Then
                 approverId = result.ToString()
+                'MessageBox.Show(approverId)
+                ' Check if the approver is on leave
+                Dim leaveQuery As String = "SELECT On_Leave FROM supervisor WHERE IITG_ID = @approverId"
+                Dim leaveCommand As New MySqlCommand(leaveQuery, connection)
+                leaveCommand.Parameters.AddWithValue("@approverId", approverId)
+                Dim leaveResult = leaveCommand.ExecuteScalar()
+                'MessageBox.Show(leaveResult)
+                If leaveResult IsNot Nothing AndAlso leaveResult.ToString() = "True" Then
+                    ' Update the approverId to 'doaa'
+                    val = 1
+                    'approverId = GetSupervisorApproverId(approverId)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error retrieving approverId: " & ex.Message)
         Finally
             connection.Close()
         End Try
+        If val = 1 Then
+            approverId = GetSupervisorApproverId(approverId)
+        End If
         Return approverId
     End Function
+
+
 
     Private Function GetSupervisorApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
-        ' Query the supervisor table to get the Approver_ID based on IITG_ID
+        Dim val As Integer = 0
+        ' Query the faculty table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM supervisor WHERE IITG_ID = @iitgId"
+
         ' Execute query and retrieve Approver_ID
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@iitgId", iitgId)
             Dim result = command.ExecuteScalar()
+
             If Not IsDBNull(result) Then
                 approverId = result.ToString()
+                'MessageBox.Show(approverId)
+                ' Check if the approver is on leave
+                Dim leaveQuery As String = "SELECT On_Leave FROM head_supervisor WHERE IITG_ID = @approverId"
+                Dim leaveCommand As New MySqlCommand(leaveQuery, connection)
+                leaveCommand.Parameters.AddWithValue("@approverId", approverId)
+                Dim leaveResult = leaveCommand.ExecuteScalar()
+                'MessageBox.Show(leaveResult)
+                If leaveResult IsNot Nothing AndAlso leaveResult.ToString() = "True" Then
+                    ' Update the approverId to 'doaa'
+                    val = 1
+                    'approverId = GetHeadSupervisorApproverId(approverId)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error retrieving approverId: " & ex.Message)
         Finally
             connection.Close()
         End Try
+        If val = 1 Then
+            approverId = GetHeadSupervisorApproverId(approverId)
+        End If
         Return approverId
     End Function
 
+
     Private Function GetHeadSupervisorApproverId(ByVal iitgId As String) As String
         Dim approverId As String = ""
-
-        ' Query the head_supervisor table to get the Approver_ID based on IITG_ID
+        Dim val As Integer = 0
+        ' Query the faculty table to get the Approver_ID based on IITG_ID
         Dim query As String = "SELECT Approver_ID FROM head_supervisor WHERE IITG_ID = @iitgId"
+
         ' Execute query and retrieve Approver_ID
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@iitgId", iitgId)
             Dim result = command.ExecuteScalar()
+
             If Not IsDBNull(result) Then
                 approverId = result.ToString()
+                'MessageBox.Show(approverId)
+                ' Check if the approver is on leave
+                Dim leaveQuery As String = "SELECT On_Leave FROM director WHERE IITG_ID = @approverId"
+                Dim leaveCommand As New MySqlCommand(leaveQuery, connection)
+                leaveCommand.Parameters.AddWithValue("@approverId", approverId)
+                Dim leaveResult = leaveCommand.ExecuteScalar()
+                'MessageBox.Show(leaveResult)
+                If leaveResult IsNot Nothing AndAlso leaveResult.ToString() = "True" Then
+                    ' Update the approverId to 'doaa'
+                    val = 1
+                    'approverId = GetDirectorApproverId(approverId)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error retrieving approverId: " & ex.Message)
         Finally
             connection.Close()
         End Try
+        If val = 1 Then
+            approverId = GetDirectorApproverId(approverId)
+        End If
         Return approverId
     End Function
 
@@ -488,6 +629,7 @@ Public Class ApplyLeaveForm
 
         Return nextLeaveId
     End Function
+
 
     Private Function GetApproverName(ByVal iitgId As String) As String
         Dim approverName As String = ""

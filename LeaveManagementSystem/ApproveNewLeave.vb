@@ -6,8 +6,20 @@ Public Class ApproveNewLeave
     Dim leaveRequestsTable As New DataTable("LeaveRequests")
 
     Private Sub LeaveApprovalForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+        
+    End Sub
+    Public Sub New()
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+        ' Set up form properties
+        Me.Text = "Apply Leave"
         InitializeDataGridView()
         LoadLeaveRequestsData()
+        ' Set background color programmatically
+        Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub
 
     Private Sub InitializeDataGridView()

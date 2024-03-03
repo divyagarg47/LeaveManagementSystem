@@ -47,9 +47,8 @@ Public Class LoginForm
                 Else
                     homePageForm.Show()
                 End If
-
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
+             Else
                 MessageBox.Show("Incorrect Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Else
