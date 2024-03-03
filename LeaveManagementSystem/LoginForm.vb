@@ -108,4 +108,8 @@ Public Class LoginForm
     Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
 
     End Sub
+
+    Private Sub GroupBox1_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox1.Enter
+
+    End Sub
 End Class

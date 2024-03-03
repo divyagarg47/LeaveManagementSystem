@@ -4,93 +4,34 @@ Public Class ApplyLeaveForm
 
     Private connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
     Private connection As New MySqlConnection(connectionString)
-    Private WithEvents logoutButton As New Button()
-    'buttons
-    Private WithEvents btnLeaveHistory As New Button()
-    Private WithEvents btnNewLeave As New Button()
-    Private WithEvents btnApproveLeave As New Button()
 
-    Private Sub ApplyLeaveForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        ApplyLeave_UI()
-    End Sub
-    Private Sub ApplyLeave_UI()
-        ' Set background color programmatically
-        Me.BackColor = Color.AliceBlue ' Set your desired background color here
-
-
-        Me.WindowState = FormWindowState.Maximized
-        ' Add the menu panel
-        Dim menuPanel As New Panel()
-        menuPanel.BackColor = Color.Black
-        menuPanel.Size = New Size(150, 400) ' Adjust height to fit below the logo
-        menuPanel.Location = New Point(0, 90) ' Position below the logo
-        Me.Controls.Add(menuPanel)
-
-        ' Add buttons inside the menu panel for navigation
-        btnLeaveHistory.Text = "Leave History"
-        btnLeaveHistory.Size = New Size(120, 30)
-        btnLeaveHistory.Location = New Point(15, 50)
-        btnLeaveHistory.ForeColor = Color.White ' Set font color
-        menuPanel.Controls.Add(btnLeaveHistory)
-
-        btnNewLeave.Text = "Apply New Leave"
-        btnNewLeave.Size = New Size(120, 30)
-        btnNewLeave.Location = New Point(15, 100)
-        btnNewLeave.ForeColor = Color.White ' Set font color
-        menuPanel.Controls.Add(btnNewLeave)
-
-
-        ' Check if the user's designation is not student, faculty, or staff
-        If Not (HomePageForm.designationLabel.Text = "Designation: student" Or HomePageForm.designationLabel.Text = "Designation: faculty" Or HomePageForm.designationLabel.Text = "Designation: staff" Or HomePageForm.designationLabel.Text = "Designation: admin") Then
-            ' Add "Approve Leave" button
-            btnApproveLeave.Text = "Approve Leave"
-            btnApproveLeave.Size = New Size(120, 30)
-            btnApproveLeave.Location = New Point(15, 200)
-            btnApproveLeave.ForeColor = Color.White ' Set font color
-            menuPanel.Controls.Add(btnApproveLeave)
-        End If
-
-        ' Add a PictureBox for the IITG logo
-        Dim iitgLogoPictureBox As New PictureBox()
-        Try
-            ' Load the image file from the same directory as the application executable
-            iitgLogoPictureBox.Image = LeaveManagementSystem.My.Resources.IITG_logo
-
-            ' Set PictureBox properties
-            iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
-            iitgLogoPictureBox.Size = New Size(50, 50) ' Set the size of the logo PictureBox
-            iitgLogoPictureBox.Location = New Point(20, 20) ' Position the logo at the top left corner
-            Me.Controls.Add(iitgLogoPictureBox)
-        Catch ex As Exception
-            ' Handle file loading errors
-            MessageBox.Show("An error occurred while loading the image: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-        ' Add a logout button
-        logoutButton.Text = "Logout"
-        logoutButton.AutoSize = True
-        logoutButton.Font = New Font("Arial", 12, FontStyle.Regular)
-        ' Set the location of the logout button at the top right of the form
-        logoutButton.Location = New Point(Me.ClientSize.Width - logoutButton.Width - 40, 20)
-        Me.Controls.Add(logoutButton) ' Add the button to the form
-
-        ' Attach the event handler using AddHandler
-        AddHandler logoutButton.Click, AddressOf HomePageForm.LogoutButton_Click
-    End Sub
     Private Sub SubmitButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SubmitButton.Click
         ' Perform validation before submitting
         Dim start As Date = StartDate.Value
         Dim endd As Date = EndDate.Value
         If ValidateInput(start, endd) Then
-            ' Submit leave application
+            ' Calculate number of leaves excluding holidays
+            Dim numberOfLeaves As Integer = CalculateNumberOfLeaves(start, endd)
 
-            InsertLeaveApplication(start, endd)
+            ' If no leaves are left after excluding holidays, do not submit the leave application
+            If numberOfLeaves = 0 Then
+                MessageBox.Show("All days between the start and end dates are holidays.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub ' Exit the subprocedure as no leave needs to be submitted
+            End If
+
+            ' Submit leave application
+            InsertLeaveApplication(start, endd, numberOfLeaves)
             ShowConfirmationModal(start, endd)
         End If
     End Sub
 
     Private Function ValidateInput(ByVal start As Date, ByVal endd As Date) As Boolean
         ' Perform validation checks
+        If start <= Date.Today Then
+            MessageBox.Show("Start date must be after today's date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End If
+
         If start >= endd Then
             MessageBox.Show("End date must be after start date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
@@ -112,34 +53,34 @@ Public Class ApplyLeaveForm
                                             "Start Date: " & start.ToString("MM/dd/yyyy") & vbCrLf &
                                             "End Date: " & endd.ToString("MM/dd/yyyy") & vbCrLf &
                                             "Leave Type: " & LeaveTypeComboBox.SelectedItem.ToString() & vbCrLf &
+                                            "Number of Days: " & (endd - start).Days & vbCrLf &
                                             "Reason: " & ReasonTextBox.Text
 
         ' Display confirmation modal
         MessageBox.Show(confirmationMessage, "Leave Application Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Sub InsertLeaveApplication(ByVal start As Date, ByVal endd As Date)
+    Private Sub InsertLeaveApplication(ByVal start As Date, ByVal endd As Date, ByVal numberOfLeaves As Integer)
         Dim leaveId As Integer = GetNextLeaveId()
         Dim iitgId As String = GlobalVariables.Email
-        Dim startDate As Date = start
-        Dim endDate As Date = endd
         Dim appliedOn As Date = Date.Today
-        Dim numberOfLeaves As Integer = (endd - start).Days
         Dim typeOfLeave As String = LeaveTypeComboBox.SelectedItem.ToString()
         Dim statusOfLeave As String = "Pending" ' Assuming the status starts as pending
         Dim reason As String = ReasonTextBox.Text
-        Dim approverId As String = "" ' You need to set this to the approver's ID
+        Dim approverId As String = GetApproverId(iitgId)
 
+        ' Construct SQL query
         Dim query As String = "INSERT INTO leave_table (Leave_ID, IITG_ID, Start_Date, End_Date, Applied_On, Number_Of_Leaves, Type_Of_Leave, Status_Of_Leave, Reason, Approver_ID) " &
                               "VALUES (@leaveId, @iitgId, @startDate, @endDate, @appliedOn, @numberOfLeaves, @typeOfLeave, @statusOfLeave, @reason, @approverId)"
 
         Try
             connection.Open()
             Dim command As New MySqlCommand(query, connection)
+            ' Add parameters
             command.Parameters.AddWithValue("@leaveId", leaveId)
             command.Parameters.AddWithValue("@iitgId", iitgId)
-            command.Parameters.AddWithValue("@startDate", StartDate)
-            command.Parameters.AddWithValue("@endDate", EndDate)
+            command.Parameters.AddWithValue("@startDate", start)
+            command.Parameters.AddWithValue("@endDate", endd)
             command.Parameters.AddWithValue("@appliedOn", appliedOn)
             command.Parameters.AddWithValue("@numberOfLeaves", numberOfLeaves)
             command.Parameters.AddWithValue("@typeOfLeave", typeOfLeave)
@@ -147,13 +88,259 @@ Public Class ApplyLeaveForm
             command.Parameters.AddWithValue("@reason", reason)
             command.Parameters.AddWithValue("@approverId", approverId)
             command.ExecuteNonQuery()
-            MessageBox.Show(iitgId)
         Catch ex As Exception
             MessageBox.Show("Error inserting leave application: " & ex.Message)
         Finally
             connection.Close()
         End Try
     End Sub
+
+    Private Function CalculateNumberOfLeaves(ByVal start As Date, ByVal endd As Date) As Integer
+        Dim numberOfLeaves As Integer = (endd - start).Days + 1
+
+        ' Query the holidays table to count the number of holidays falling within the specified range
+        Dim query As String = "SELECT COUNT(*) FROM holidays WHERE date >= @startDate AND date <= @endDate"
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@startDate", start.Date)
+            command.Parameters.AddWithValue("@endDate", endd.Date)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                Dim holidaysCount As Integer = Convert.ToInt32(result)
+                numberOfLeaves -= holidaysCount
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error counting holidays: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+
+        Return numberOfLeaves
+    End Function
+
+    Private Function GetApproverId(ByVal iitgId As String) As String
+        Dim designation As String = GetDesignation(iitgId)
+
+        Select Case designation
+            Case "student"
+                Return GetStudentApproverId(iitgId)
+            Case "faculty"
+                Return GetFacultyApproverId(iitgId)
+            Case "hod"
+                Return GetHODApproverId(iitgId)
+            Case "dean"
+                Return GetDeanApproverId(iitgId)
+            Case "director"
+                Return GetDirectorApproverId(iitgId)
+            Case "staff"
+                Return GetStaffApproverId(iitgId)
+            Case "supervisor"
+                Return GetSupervisorApproverId(iitgId)
+            Case "head_supervisor"
+                Return GetHeadSupervisorApproverId(iitgId)
+            Case Else
+                Return "" ' Default value if designation is not recognized
+        End Select
+    End Function
+
+    Private Function GetDesignation(ByVal iitgId As String) As String
+        Dim designation As String = ""
+
+        ' Query the lookup_table to get the designation based on IITG_ID
+        Dim query As String = "SELECT Designation FROM lookup_table WHERE IITG_ID = @iitgId"
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                designation = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving designation: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+
+        Return designation
+    End Function
+
+    Private Function GetStudentApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the student table to get the Approver_ID based on IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM student WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
+
+    Private Function GetFacultyApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the faculty table to get the Approver_ID based on IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM faculty WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
+
+    Private Function GetHODApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the hod table to get the Approver_ID based on Department and IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM hod WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
+
+    Private Function GetDeanApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the dean table to get the Approver_ID based on IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM dean WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
+
+    Private Function GetDirectorApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the director table to get the Approver_ID based on IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM director WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
+
+    Private Function GetStaffApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the staff table to get the Approver_ID based on IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM staff WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
+
+    Private Function GetSupervisorApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the supervisor table to get the Approver_ID based on IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM supervisor WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
+
+    Private Function GetHeadSupervisorApproverId(ByVal iitgId As String) As String
+        Dim approverId As String = ""
+
+        ' Query the head_supervisor table to get the Approver_ID based on IITG_ID
+        Dim query As String = "SELECT Approver_ID FROM head_supervisor WHERE IITG_ID = @iitgId"
+        ' Execute query and retrieve Approver_ID
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverId = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approverId: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+        Return approverId
+    End Function
 
     Private Function GetNextLeaveId() As Integer
         Dim nextLeaveId As Integer = 1
@@ -176,5 +363,29 @@ Public Class ApplyLeaveForm
         Return nextLeaveId
     End Function
 
-    
+    Private Function GetApproverName(ByVal iitgId As String) As String
+        Dim approverName As String = ""
+
+        ' Query the users table to get the name of the approver based on IITG_ID
+        Dim query As String = "SELECT Name FROM users WHERE IITG_ID = @iitgId"
+        Try
+            connection.Open()
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@iitgId", iitgId)
+            Dim result = command.ExecuteScalar()
+            If Not IsDBNull(result) Then
+                approverName = result.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving approver name: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+
+        Return approverName
+    End Function
+
+    Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
