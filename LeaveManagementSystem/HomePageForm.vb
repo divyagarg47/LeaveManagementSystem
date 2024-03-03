@@ -1,10 +1,13 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class HomePageForm
-
     Inherits Form
+
+    ' Declare member variables
     Dim userEmail As String
     Dim userName As String
+
+    ' Labels for user information
     Public designationLabel As New Label()
     Public iitgIdLabel As New Label()
     Public rollNoLabel As New Label()
@@ -12,32 +15,36 @@ Public Class HomePageForm
     Public departmentLabel As New Label()
     Public typeofstafflabel As New Label()
 
-    'buttons
+    ' Buttons for navigation
     Private WithEvents btnLeaveHistory As New Button()
     Private WithEvents btnNewLeave As New Button()
     Private WithEvents btnApproveLeave As New Button()
+
     ' Connection string for your MySQL database
     Dim connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
 
-    'Button connections
-    Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
-        Me.Hide()
-        LeaveHistoryForm.Show()
-    End Sub
-    Private Sub btnNewLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
-        Me.Hide()
-        ApplyLeaveForm.Show()
-    End Sub
-    Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
-        Me.Hide()
-        ApproveNewLeave.Show()
+    ' Constructor
+    Public Sub New()
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+        ' Set up form properties
+        Me.Text = "Home Page"
+        Me.Size = New Size(800, 600)
+
+        ' Set background color programmatically
+        Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub
 
+    ' Event handler for the form load event
     Private Sub HomePageForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         ' Load user information when the form loads
         LoadUserInfo()
         Load_UI(sender, e)
     End Sub
+
     ' Function to load user information
     Private Sub LoadUserInfo()
         userEmail = GlobalVariables.Email
@@ -54,6 +61,7 @@ Public Class HomePageForm
         End If
     End Sub
 
+    ' Function to get an element from the database
     Private Function GetElement(ByVal userEmail As String, ByVal table As String, ByVal item As String) As String
         Using connection As New MySqlConnection(connectionString)
             connection.Open()
@@ -65,25 +73,22 @@ Public Class HomePageForm
         End Using
     End Function
 
+    ' Function to populate labels based on user designation
     Private Sub GetLabels(ByVal userEmail As String, ByVal designation As String)
         If designation = "student" Then
             'get roll no
             rollNoLabel.Text = GetElement(userEmail, designation, "Roll_Number")
-
             'get program label
             programLabel.Text = GetElement(userEmail, designation, "Programme")
-
             'get department
             departmentLabel.Text = GetElement(userEmail, designation, "Department")
         ElseIf designation = "faculty" Then
             'get department
             departmentLabel.Text = GetElement(userEmail, designation, "Department")
-            'get department
         ElseIf designation = "HoD" Then
             'get department
             departmentLabel.Text = GetElement(userEmail, designation, "Department")
         ElseIf designation = "staff" Then
-
             'get type of staff
             typeofstafflabel.Text = GetElement(userEmail, designation, "Department")
         End If
@@ -99,29 +104,48 @@ Public Class HomePageForm
                 Return TryCast(command.ExecuteScalar(), String)
             End Using
         End Using
-
     End Function
-    ' Front end
 
-    ' Declare the button with WithEvents keyword
-    Private WithEvents logoutButton As New Button()
-
-    Public Sub New()
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-
-        ' Set up form properties
-        Me.Text = "Home Page"
-        Me.Size = New Size(800, 600)
-
-        ' Set background color programmatically
-        Me.BackColor = Color.AliceBlue ' Set your desired background color here
+    ' Event handler for the Logout button click event
+    Public Sub LogoutButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+        ' Add logout functionality here
+        GlobalVariables.Email = ""
+        GlobalVariables.Designation = ""
+        userEmail = ""
+        userName = ""
+        designationLabel.Text = ""
+        iitgIdLabel.Text = ""
+        rollNoLabel.Text = ""
+        programLabel.Text = ""
+        departmentLabel.Text = ""
+        typeofstafflabel.Text = ""
+        Me.Hide()
+        LoginForm.Show()
+        MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
+    ' Event handler for the Leave History button click event
+    Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
+        Me.Hide()
+        LeaveHistoryForm.Show()
+    End Sub
+
+    ' Event handler for the Apply New Leave button click event
+    Private Sub btnNewLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
+        Me.Hide()
+        ApplyLeaveForm.Show()
+    End Sub
+
+    ' Event handler for the Approve Leave button click event
+    Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
+        Me.Hide()
+        ApproveNewLeave.Show()
+    End Sub
+
+    ' Front-end method to load UI components
     Private Sub Load_UI(ByVal sender As Object, ByVal e As EventArgs)
         Me.WindowState = FormWindowState.Maximized
+
         ' Add the menu panel
         Dim menuPanel As New Panel()
         menuPanel.BackColor = Color.Black
@@ -142,7 +166,6 @@ Public Class HomePageForm
         btnNewLeave.ForeColor = Color.White ' Set font color
         menuPanel.Controls.Add(btnNewLeave)
 
-
         ' Check if the user's designation is not student, faculty, or staff
         If GlobalVariables.Approver = "1" Then
             ' Add "Approve Leave" button
@@ -158,8 +181,6 @@ Public Class HomePageForm
             btnApproveLeave.Enabled = False
         End If
 
-
-
         ' Add a header label
         Dim headerLabel As New Label()
         headerLabel.Text = "Welcome to IITG Leave Management System"
@@ -167,8 +188,6 @@ Public Class HomePageForm
         headerLabel.Font = New Font("Arial", 24, FontStyle.Bold) ' Increase font size
         headerLabel.Location = New Point((Me.ClientSize.Width - headerLabel.Width) \ 3, 20)
         Me.Controls.Add(headerLabel)
-
-
 
         ' Add a PictureBox for the IITG logo
         Dim iitgLogoPictureBox As New PictureBox()
@@ -188,6 +207,7 @@ Public Class HomePageForm
         End Try
 
         ' Add a logout button
+        Dim logoutButton As New Button()
         logoutButton.Text = "Logout"
         logoutButton.AutoSize = True
         logoutButton.Font = New Font("Arial", 12, FontStyle.Regular)
@@ -206,14 +226,11 @@ Public Class HomePageForm
         nameLabel.Location = New Point((Me.ClientSize.Width - nameLabel.Width) \ 2, 200) ' Center horizontally
         Me.Controls.Add(nameLabel)
 
-
         iitgIdLabel.Text = "IITG ID: " + userEmail
         iitgIdLabel.AutoSize = True
         iitgIdLabel.Font = New Font("Arial", 14, FontStyle.Regular)
         iitgIdLabel.Location = New Point((Me.ClientSize.Width - iitgIdLabel.Width) \ 2, 240) ' Center horizontally
         Me.Controls.Add(iitgIdLabel)
-
-
 
         designationLabel.AutoSize = True
         designationLabel.Font = New Font("Arial", 14, FontStyle.Regular)
@@ -227,32 +244,25 @@ Public Class HomePageForm
             rollNoLabel.Location = New Point((Me.ClientSize.Width - rollNoLabel.Width) \ 2, 320) ' Center horizontally
             Me.Controls.Add(rollNoLabel)
 
-
             programLabel.Text = "Program: " + programLabel.Text
             programLabel.AutoSize = True
             programLabel.Font = New Font("Arial", 14, FontStyle.Regular)
             programLabel.Location = New Point((Me.ClientSize.Width - programLabel.Width) \ 2, 360) ' Center horizontally
             Me.Controls.Add(programLabel)
 
-
-
             departmentLabel.Text = "Department: " + departmentLabel.Text
             departmentLabel.AutoSize = True
             departmentLabel.Font = New Font("Arial", 14, FontStyle.Regular)
             departmentLabel.Location = New Point((Me.ClientSize.Width - departmentLabel.Width) \ 2, 400) ' Center horizontally
             Me.Controls.Add(departmentLabel)
-
         End If
 
         If designationLabel.Text = "Designation: faculty" Or designationLabel.Text = "Designation: HoD" Then
-
-
             departmentLabel.Text = "Department: " + departmentLabel.Text
             departmentLabel.AutoSize = True
             departmentLabel.Font = New Font("Arial", 14, FontStyle.Regular)
             departmentLabel.Location = New Point((Me.ClientSize.Width - departmentLabel.Width) \ 2, 320) ' Center horizontally
             Me.Controls.Add(departmentLabel)
-
         End If
 
         If designationLabel.Text = "Designation: staff" Or designationLabel.Text = "Designation: supervisor" Then
@@ -261,25 +271,6 @@ Public Class HomePageForm
             typeofstafflabel.Font = New Font("Arial", 14, FontStyle.Regular)
             typeofstafflabel.Location = New Point((Me.ClientSize.Width - typeofstafflabel.Width) \ 2, 320) ' Center horizontally
             Me.Controls.Add(typeofstafflabel)
-
         End If
-    End Sub
-    ' Event handler method for the logout button click event
-    Public Sub LogoutButton_Click(ByVal sender As Object, ByVal e As EventArgs)
-        ' Add logout functionality here
-        GlobalVariables.Email = ""
-        GlobalVariables.Designation = ""
-
-        userEmail = ""
-        userName = ""
-        designationLabel.Text = ""
-        iitgIdLabel.Text = ""
-        rollNoLabel.Text = ""
-        programLabel.Text = ""
-        departmentLabel.Text = ""
-        typeofstafflabel.Text = ""
-        Me.Hide()
-        LoginForm.Show()
-        MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class

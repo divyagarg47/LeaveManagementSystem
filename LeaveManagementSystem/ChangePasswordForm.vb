@@ -5,25 +5,30 @@ Public Class ChangePasswordForm
     ' Connection string for your MySQL database
     Dim connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
 
+    ' Event handler for the Change Password button click
     Private Sub btnChangePassword_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnChangePassword.Click
+        ' Get user input from textboxes
         Dim userEmail As String = txtEmail.Text
         Dim oldPassword As String = txtOldPassword.Text
         Dim newPassword As String = txtNewPassword.Text
 
+        ' Check if all fields are filled
         If String.IsNullOrEmpty(userEmail) OrElse String.IsNullOrEmpty(oldPassword) OrElse String.IsNullOrEmpty(newPassword) Then
             MessageBox.Show("Please enter all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             ' Exit the event, preventing further code execution
             Exit Sub
         End If
 
+        ' Check if new password is the same as old password
         If newPassword.Equals(oldPassword) Then
-            MessageBox.Show("New password can not be same as old passsword.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("New password can not be the same as the old password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             ' Exit the event, preventing further code execution
             Exit Sub
         End If
 
+        ' Validate the new password format
         If Not ValidateNewPassword(newPassword) Then
-            MessageBox.Show("New password should have atlease 1 capital letter, 1 numeric value and 1 special character.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("New password should have at least 1 capital letter, 1 numeric value, and 1 special character.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             ' Exit the event, preventing further code execution
             Exit Sub
         End If
@@ -36,13 +41,16 @@ Public Class ChangePasswordForm
             If CheckOldPassword(userEmail, oldPassword, designation) Then
                 ' Update the password
                 If UpdatePassword(userEmail, newPassword, designation) Then
+                    ' Clear textboxes
                     txtEmail.Text = ""
                     txtOldPassword.Text = ""
                     txtNewPassword.Text = ""
+
+                    ' Hide the Change Password form and show the Login form
                     Me.Hide()
                     LoginForm.Show()
-                    MessageBox.Show("Password changed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+                    MessageBox.Show("Password changed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     MessageBox.Show("Failed to update password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
@@ -54,6 +62,7 @@ Public Class ChangePasswordForm
         End If
     End Sub
 
+    ' Function to validate the new password format
     Private Function ValidateNewPassword(ByVal newPassword As String) As Boolean
         ' Check if the new password has at least one capital letter, one number, and one special character
         Return System.Text.RegularExpressions.Regex.IsMatch(newPassword, "(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])")
@@ -97,22 +106,24 @@ Public Class ChangePasswordForm
         End Using
     End Function
 
-    Private Sub ChangePasswordForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+    ' Event handler for the Change Password form load event
+    Private Sub ChangePasswordForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ' Set the form state to maximized
         Me.WindowState = FormWindowState.Maximized
-        GroupBox1.Location = New Point((Me.Size.Width - GroupBox1.Size.Width) / 2, (Me.Size.Height - GroupBox1.Size.Height) / 2)
 
+        ' Center the GroupBox
+        GroupBox1.Location = New Point((Me.Size.Width - GroupBox1.Size.Width) / 2, (Me.Size.Height - GroupBox1.Size.Height) / 2)
     End Sub
 
+    ' Event handler for the Back button click
     Private Sub btnBack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
+        ' Clear textboxes
         txtEmail.Text = ""
         txtOldPassword.Text = ""
         txtNewPassword.Text = ""
+
+        ' Hide the Change Password form and show the Login form
         Me.Hide()
         LoginForm.Show()
-    End Sub
-
-    Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles GroupBox1.Enter
-
     End Sub
 End Class
