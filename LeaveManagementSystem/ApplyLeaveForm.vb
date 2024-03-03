@@ -13,6 +13,8 @@ Public Class ApplyLeaveForm
 
     Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ApplyLeave_UI()
+        LeaveTypeComboBox.Items.Insert(0, New List(Of String) From {"Medical", "Vacation", "Casual"})
+
     End Sub
     'Button connections
     Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
@@ -497,4 +499,8 @@ Public Class ApplyLeaveForm
 
         Return approverName
     End Function
+
+    Private Sub LeaveTypeComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles LeaveTypeComboBox.SelectedIndexChanged
+
+    End Sub
 End Class

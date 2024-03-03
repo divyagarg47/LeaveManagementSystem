@@ -146,11 +146,16 @@ Public Class HomePageForm
         ' Check if the user's designation is not student, faculty, or staff
         If Not (designationLabel.Text = "Designation: student" Or designationLabel.Text = "Designation: faculty" Or designationLabel.Text = "Designation: staff" Or designationLabel.Text = "Designation: admin") Then
             ' Add "Approve Leave" button
+            btnApproveLeave.Visible = True
+            btnApproveLeave.Enabled = True
             btnApproveLeave.Text = "Approve Leave"
             btnApproveLeave.Size = New Size(120, 30)
             btnApproveLeave.Location = New Point(15, 200)
             btnApproveLeave.ForeColor = Color.White ' Set font color
             menuPanel.Controls.Add(btnApproveLeave)
+        Else
+            btnApproveLeave.Visible = False
+            btnApproveLeave.Enabled = False
         End If
 
 

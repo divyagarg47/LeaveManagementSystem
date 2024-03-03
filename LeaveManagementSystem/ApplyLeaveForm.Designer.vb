@@ -46,7 +46,6 @@ Partial Class ApplyLeaveForm
         'LeaveTypeComboBox
         '
         Me.LeaveTypeComboBox.FormattingEnabled = True
-        Me.LeaveTypeComboBox.Items.AddRange(New Object() {"Medical", "Paid", "Casual"})
         Me.LeaveTypeComboBox.Location = New System.Drawing.Point(180, 119)
         Me.LeaveTypeComboBox.Name = "LeaveTypeComboBox"
         Me.LeaveTypeComboBox.Size = New System.Drawing.Size(156, 24)
