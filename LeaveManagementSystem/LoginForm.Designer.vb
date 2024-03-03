@@ -36,7 +36,7 @@ Partial Class LoginForm
         '
         Me.btnLogin.BackColor = System.Drawing.Color.Turquoise
         Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLogin.Location = New System.Drawing.Point(214, 240)
+        Me.btnLogin.Location = New System.Drawing.Point(209, 311)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(100, 40)
         Me.btnLogin.TabIndex = 0
@@ -46,7 +46,7 @@ Partial Class LoginForm
         'txtUserID
         '
         Me.txtUserID.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUserID.Location = New System.Drawing.Point(159, 142)
+        Me.txtUserID.Location = New System.Drawing.Point(154, 213)
         Me.txtUserID.Name = "txtUserID"
         Me.txtUserID.Size = New System.Drawing.Size(207, 26)
         Me.txtUserID.TabIndex = 1
@@ -55,7 +55,7 @@ Partial Class LoginForm
         'txtPassword
         '
         Me.txtPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPassword.Location = New System.Drawing.Point(159, 207)
+        Me.txtPassword.Location = New System.Drawing.Point(154, 278)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(207, 26)
@@ -81,7 +81,7 @@ Partial Class LoginForm
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(156, 175)
+        Me.Label2.Location = New System.Drawing.Point(151, 246)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(98, 25)
         Me.Label2.TabIndex = 5
@@ -91,7 +91,7 @@ Partial Class LoginForm
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(156, 110)
+        Me.Label1.Location = New System.Drawing.Point(151, 181)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(74, 25)
         Me.Label1.TabIndex = 4
@@ -101,7 +101,7 @@ Partial Class LoginForm
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.DarkTurquoise
-        Me.Button1.Location = New System.Drawing.Point(159, 287)
+        Me.Button1.Location = New System.Drawing.Point(154, 358)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(207, 39)
         Me.Button1.TabIndex = 3

@@ -76,7 +76,7 @@ Public Class LoginForm
 
             ' Set PictureBox properties
             iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
-            iitgLogoPictureBox.Size = New Size(50, 50) ' Set the size of the logo PictureBox
+            iitgLogoPictureBox.Size = New Size(100, 100) ' Set the size of the logo PictureBox
             iitgLogoPictureBox.Location = New Point(GroupBox1.Location.X + ((GroupBox1.Size.Width - iitgLogoPictureBox.Size.Width) / 2), GroupBox1.Location.Y + 20) ' Position the logo at the top left corner
 
 
