@@ -27,24 +27,31 @@ Partial Class AdminForm
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TextBoxValues = New System.Windows.Forms.TextBox()
         Me.ButtonExecute = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboBoxTables
         '
+        Me.ComboBoxTables.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxTables.FormattingEnabled = True
+        Me.ComboBoxTables.ItemHeight = 20
         Me.ComboBoxTables.Location = New System.Drawing.Point(198, 60)
+        Me.ComboBoxTables.MaxDropDownItems = 10
         Me.ComboBoxTables.Name = "ComboBoxTables"
-        Me.ComboBoxTables.Size = New System.Drawing.Size(121, 24)
+        Me.ComboBoxTables.Size = New System.Drawing.Size(181, 28)
         Me.ComboBoxTables.TabIndex = 0
+        Me.ComboBoxTables.Text = "Select Type of Entry"
         '
         'ComboBoxActions
         '
+        Me.ComboBoxActions.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxActions.FormattingEnabled = True
         Me.ComboBoxActions.Location = New System.Drawing.Point(198, 116)
         Me.ComboBoxActions.Name = "ComboBoxActions"
-        Me.ComboBoxActions.Size = New System.Drawing.Size(121, 24)
+        Me.ComboBoxActions.Size = New System.Drawing.Size(181, 28)
         Me.ComboBoxActions.TabIndex = 1
+        Me.ComboBoxActions.Text = "Select Action Type"
         '
         'DataGridView1
         '
@@ -58,25 +65,38 @@ Partial Class AdminForm
         '
         'TextBoxValues
         '
+        Me.TextBoxValues.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxValues.Location = New System.Drawing.Point(208, 541)
         Me.TextBoxValues.Name = "TextBoxValues"
-        Me.TextBoxValues.Size = New System.Drawing.Size(100, 22)
+        Me.TextBoxValues.Size = New System.Drawing.Size(100, 26)
         Me.TextBoxValues.TabIndex = 3
         '
         'ButtonExecute
         '
-        Me.ButtonExecute.Location = New System.Drawing.Point(377, 541)
+        Me.ButtonExecute.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonExecute.Location = New System.Drawing.Point(392, 535)
         Me.ButtonExecute.Name = "ButtonExecute"
-        Me.ButtonExecute.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonExecute.Size = New System.Drawing.Size(134, 34)
         Me.ButtonExecute.TabIndex = 4
         Me.ButtonExecute.Text = "Execute"
         Me.ButtonExecute.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(207, 513)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(114, 25)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Enter Value"
         '
         'AdminForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1037, 595)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ButtonExecute)
         Me.Controls.Add(Me.TextBoxValues)
         Me.Controls.Add(Me.DataGridView1)
@@ -94,4 +114,5 @@ Partial Class AdminForm
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents TextBoxValues As System.Windows.Forms.TextBox
     Friend WithEvents ButtonExecute As System.Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

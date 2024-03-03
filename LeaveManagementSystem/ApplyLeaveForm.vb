@@ -518,4 +518,6 @@ Public Class ApplyLeaveForm
     Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles PanelInput.Enter
 
     End Sub
+
+
 End Class
