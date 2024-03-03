@@ -5,16 +5,33 @@ Public Class HomePageForm
     Inherits Form
     Dim userEmail As String
     Dim userName As String
-    Dim designationLabel As New Label()
-    Dim iitgIdLabel As New Label() ' Fill in Backend
-    Dim rollNoLabel As New Label()
-    Dim programLabel As New Label()
-    Dim departmentLabel As New Label()
-    Dim btnApproveLeave As New Button()
-    Dim typeofstafflabel As New Label()
+    Public designationLabel As New Label()
+    Public iitgIdLabel As New Label()
+    Public rollNoLabel As New Label()
+    Public programLabel As New Label()
+    Public departmentLabel As New Label()
+    Public typeofstafflabel As New Label()
 
+    'buttons
+    Private WithEvents btnLeaveHistory As New Button()
+    Private WithEvents btnNewLeave As New Button()
+    Private WithEvents btnApproveLeave As New Button()
     ' Connection string for your MySQL database
     Dim connectionString As String = "server=172.16.114.188;uid=santhosh;database=leavemanagement;"
+
+    'Button connections
+    Private Sub btnLeaveHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLeaveHistory.Click
+        Me.Hide()
+        LeaveHistoryForm.Show()
+    End Sub
+    Private Sub btnNewLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
+        Me.Hide()
+        ApplyLeaveForm.Show()
+    End Sub
+    Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
+        Me.Hide()
+        LeaveHistoryForm.Show()
+    End Sub
 
     Private Sub HomePageForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         ' Load user information when the form loads
@@ -113,28 +130,17 @@ Public Class HomePageForm
         Me.Controls.Add(menuPanel)
 
         ' Add buttons inside the menu panel for navigation
-        Dim btnLeaveHistory As New Button()
         btnLeaveHistory.Text = "Leave History"
         btnLeaveHistory.Size = New Size(120, 30)
         btnLeaveHistory.Location = New Point(15, 50)
         btnLeaveHistory.ForeColor = Color.White ' Set font color
         menuPanel.Controls.Add(btnLeaveHistory)
 
-        Dim btnNewLeave As New Button()
         btnNewLeave.Text = "Apply New Leave"
         btnNewLeave.Size = New Size(120, 30)
         btnNewLeave.Location = New Point(15, 100)
         btnNewLeave.ForeColor = Color.White ' Set font color
         menuPanel.Controls.Add(btnNewLeave)
-
-        Dim leaveBalanceButton As New Button()
-        leaveBalanceButton.Text = "Leave Balance Page"
-        leaveBalanceButton.Size = New Size(120, 30)
-        leaveBalanceButton.Location = New Point(15, 150)
-        leaveBalanceButton.ForeColor = Color.White ' Set font color
-        menuPanel.Controls.Add(leaveBalanceButton)
-
-
 
 
         ' Check if the user's designation is not student, faculty, or staff
@@ -168,7 +174,7 @@ Public Class HomePageForm
 
             ' Set PictureBox properties
             iitgLogoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
-            iitgLogoPictureBox.Size = New Size(100, 50) ' Set the size of the logo PictureBox
+            iitgLogoPictureBox.Size = New Size(50, 50) ' Set the size of the logo PictureBox
             iitgLogoPictureBox.Location = New Point(20, 20) ' Position the logo at the top left corner
             Me.Controls.Add(iitgLogoPictureBox)
         Catch ex As Exception
@@ -254,7 +260,7 @@ Public Class HomePageForm
         End If
     End Sub
     ' Event handler method for the logout button click event
-    Private Sub LogoutButton_Click(sender As Object, e As EventArgs)
+    Public Sub LogoutButton_Click(sender As Object, e As EventArgs)
         ' Add logout functionality here
         GlobalVariables.Email = ""
         GlobalVariables.Designation = ""
