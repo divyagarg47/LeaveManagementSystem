@@ -30,7 +30,7 @@ Public Class HomePageForm
     End Sub
     Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
         Me.Hide()
-        LeaveHistoryForm.Show()
+        'LeaveHistoryForm.Show()
     End Sub
 
     Private Sub HomePageForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
@@ -265,6 +265,14 @@ Public Class HomePageForm
         GlobalVariables.Email = ""
         GlobalVariables.Designation = ""
 
+        Dim userEmail = ""
+        Dim userName = ""
+        Public designationLabel.Text = ""
+        Public iitgIdLabel As New Label()
+        Public rollNoLabel As New Label()
+        Public programLabel As New Label()
+        Public departmentLabel As New Label()
+        Public typeofstafflabel As New Label()
         Me.Hide()
         LoginForm.Show()
         MessageBox.Show("Logged out successfully!", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
