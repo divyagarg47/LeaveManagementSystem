@@ -88,6 +88,8 @@ Public Class HomePageForm
 
     ' Declare the button with WithEvents keyword
     Private WithEvents logoutButton As New Button()
+    Private WithEvents btnLeaveHistory As New Button()
+    Private WithEvents btnNewLeave As New Button()
 
     Public Sub New()
         ' This call is required by the designer.
@@ -113,19 +115,20 @@ Public Class HomePageForm
         Me.Controls.Add(menuPanel)
 
         ' Add buttons inside the menu panel for navigation
-        Dim btnLeaveHistory As New Button()
+
         btnLeaveHistory.Text = "Leave History"
         btnLeaveHistory.Size = New Size(120, 30)
         btnLeaveHistory.Location = New Point(15, 50)
         btnLeaveHistory.ForeColor = Color.White ' Set font color
         menuPanel.Controls.Add(btnLeaveHistory)
 
-        Dim btnNewLeave As New Button()
+
         btnNewLeave.Text = "Apply New Leave"
         btnNewLeave.Size = New Size(120, 30)
         btnNewLeave.Location = New Point(15, 100)
         btnNewLeave.ForeColor = Color.White ' Set font color
         menuPanel.Controls.Add(btnNewLeave)
+        AddHandler btnNewLeave.Click, AddressOf btnNewLeave_Click
 
         Dim leaveBalanceButton As New Button()
         leaveBalanceButton.Text = "Leave Balance Page"
@@ -252,6 +255,11 @@ Public Class HomePageForm
             Me.Controls.Add(typeofstafflabel)
 
         End If
+    End Sub
+    Private Sub btnNewLeave_Click(ByVal sender As Object, ByVal e As EventArgs)
+
+        Me.Hide()
+        ApplyLeaveForm.Show()
     End Sub
     ' Event handler method for the logout button click event
     Private Sub LogoutButton_Click(sender As Object, e As EventArgs)
