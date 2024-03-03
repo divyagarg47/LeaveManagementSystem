@@ -25,7 +25,13 @@ Public Class LeaveHistoryForm
         Me.Hide()
         HomePageForm.Show()
     End Sub
-    
+
+
+    Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewLeave.Click
+        'work as home page
+        Me.Hide()
+        ApproveNewLeave.Show()
+    End Sub
     ' Declare the button with WithEvents keyword
     Private WithEvents logoutButton As New Button()
 
@@ -67,7 +73,7 @@ Public Class LeaveHistoryForm
 
 
         ' Check if the user's designation is not student, faculty, or staff
-        If Not (GlobalVariables.Designation = "student" Or GlobalVariables.Designation = "faculty" Or GlobalVariables.Designation = "staff" Or GlobalVariables.Designation = "admin") Then
+        If GlobalVariables.Approver = "1" Then
             ' Add "Approve Leave" button
             btnApproveLeave.Visible = True
             btnApproveLeave.Enabled = True

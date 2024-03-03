@@ -22,12 +22,24 @@ Public Class LoginForm
             ' User exists in lookup table, now check the password in the corresponding table
             If CheckPassword(userId, password, designation) Then
                 GlobalVariables.Email = userId
+                If designation = "hod" OrElse designation = "dean" OrElse designation = "director" Then
+                    ' If the value of designation is "HOD", change it to "Faculty"
+                    designation = "faculty"
+                ElseIf designation = "supervisor" OrElse designation = "head_supervisor" Then
+                    ' If the value of designation is "HOD", change it to "Faculty"
+                    designation = "staff"
+                End If
                 GlobalVariables.Designation = designation
                 txtUserID.Text = ""
                 txtPassword.Text = ""
                 Me.Hide()
                 Dim homePageForm As New HomePageForm()
-                homePageForm.Show()
+                If designation = "admin" Then
+                    AdminForm.Show()
+                Else
+                    homePageForm.Show()
+                End If
+
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("Incorrect Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -53,6 +65,17 @@ Public Class LoginForm
     Private Function CheckPassword(ByVal userId As String, ByVal password As String, ByVal designation As String) As Boolean
         Using connection As New MySqlConnection(connectionString)
             connection.Open()
+            GlobalVariables.Approver = "0"
+            If designation = "hod" OrElse designation = "dean" OrElse designation = "director" Then
+                ' If the value of designation is "HOD", change it to "Faculty"
+                designation = "faculty"
+                GlobalVariables.Approver = "1"
+            ElseIf designation = "supervisor" OrElse designation = "head_supervisor" Then
+                ' If the value of designation is "HOD", change it to "Faculty"
+                designation = "staff"
+                GlobalVariables.Approver = "1"
+            End If
+
             Dim query As String = "SELECT password FROM " & designation & " WHERE IITG_ID = @UserID"
             Using command As New MySqlCommand(query, connection)
                 command.Parameters.AddWithValue("@UserID", userId)
@@ -96,20 +119,4 @@ Public Class LoginForm
         ChangePasswordForm.Show()
     End Sub
 
-    Private Sub txtUserID_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtUserID.TextChanged
-
-    End Sub
-    Private Sub Label2_Click(sender As System.Object, e As System.EventArgs) Handles Label2.Click
-
-    End Sub
-    Private Sub txtPassword_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtPassword.TextChanged
-
-    End Sub
-    Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
-
-    End Sub
-
-    Private Sub GroupBox1_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox1.Enter
-
-    End Sub
 End Class

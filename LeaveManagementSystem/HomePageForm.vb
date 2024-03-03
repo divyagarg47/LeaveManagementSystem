@@ -30,7 +30,7 @@ Public Class HomePageForm
     End Sub
     Private Sub btnApproveLeave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApproveLeave.Click
         Me.Hide()
-        'LeaveHistoryForm.Show()
+        ApproveNewLeave.Show()
     End Sub
 
     Private Sub HomePageForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
@@ -144,7 +144,7 @@ Public Class HomePageForm
 
 
         ' Check if the user's designation is not student, faculty, or staff
-        If Not (designationLabel.Text = "Designation: student" Or designationLabel.Text = "Designation: faculty" Or designationLabel.Text = "Designation: staff" Or designationLabel.Text = "Designation: admin") Then
+        If GlobalVariables.Approver = "1" Then
             ' Add "Approve Leave" button
             btnApproveLeave.Visible = True
             btnApproveLeave.Enabled = True

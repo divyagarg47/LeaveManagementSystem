@@ -40,7 +40,6 @@ C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\Leave
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.pdb
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml
-<<<<<<< HEAD
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.exe
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.xml
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
@@ -56,5 +55,19 @@ D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveM
 D:\SWE Assignment 2\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml
 =======
 C:\Users\akach\Desktop\6th sem\course\se\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.AdminForm.resources
->>>>>>> 967526558e3831bce1fc1ca81301e25e45092eb0
 C:\Users\divya\Documents\Visual Studio 2010\Projects\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.AdminForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.exe
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.xml
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.pdb
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.AdminForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ApproveNewLeave.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ChangePasswordForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.HomePageForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.LoginForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.LeaveHistoryForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.Resources.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.ApplyLeaveForm.resources
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\obj\x86\Debug\LeaveManagementSystem.vbproj.GenerateResource.Cache
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.exe
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.pdb
+C:\Users\akach\Desktop\6th sem\course\se\1\LeaveManagementSystem\LeaveManagementSystem\bin\Debug\LeaveManagementSystem.xml

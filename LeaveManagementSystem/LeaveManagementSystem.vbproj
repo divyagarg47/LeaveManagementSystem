@@ -82,6 +82,12 @@
     <Compile Include="AdminForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ApproveNewLeave.Designer.vb">
+      <DependentUpon>ApproveNewLeave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveNewLeave.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ChangePasswordForm.Designer.vb">
       <DependentUpon>ChangePasswordForm.vb</DependentUpon>
     </Compile>
@@ -133,6 +139,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApproveNewLeave.resx">
+      <DependentUpon>ApproveNewLeave.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.vb</DependentUpon>
