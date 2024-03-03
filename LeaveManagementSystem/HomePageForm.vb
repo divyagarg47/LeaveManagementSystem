@@ -34,7 +34,9 @@ Public Class HomePageForm
     End Sub
 
     Private Sub HomePageForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        
+
+        LoadUserInfo()
+        Load_UI()
     End Sub
     ' Function to load user information
     Private Sub LoadUserInfo()
@@ -114,8 +116,6 @@ Public Class HomePageForm
         Me.Text = "Home Page"
         Me.Size = New Size(800, 600)
         ' Load user information when the form loads
-        LoadUserInfo()
-        Load_UI()
         ' Set background color programmatically
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub

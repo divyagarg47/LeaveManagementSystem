@@ -12,7 +12,11 @@ Public Class ApplyLeaveForm
 
 
     Private Sub ApplyLeaveForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        
+
+        ApplyLeave_UI()
+        LeaveTypeComboBox.Items.Add("Medical")
+        LeaveTypeComboBox.Items.Add("Vacation")
+        LeaveTypeComboBox.Items.Add("Casual")
 
     End Sub
 
@@ -42,10 +46,6 @@ Public Class ApplyLeaveForm
         ' Set up form properties
         Me.Text = "Apply Leave"
         Me.Size = New Size(800, 600)
-        ApplyLeave_UI()
-        LeaveTypeComboBox.Items.Add("Medical")
-        LeaveTypeComboBox.Items.Add("Vacation")
-        LeaveTypeComboBox.Items.Add("Casual")
         ' Set background color programmatically
         Me.BackColor = Color.AliceBlue ' Set your desired background color here
     End Sub

@@ -48,6 +48,7 @@ Partial Class ChangePasswordForm
         Me.txtOldPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtOldPassword.Location = New System.Drawing.Point(188, 179)
         Me.txtOldPassword.Name = "txtOldPassword"
+        Me.txtOldPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtOldPassword.Size = New System.Drawing.Size(138, 26)
         Me.txtOldPassword.TabIndex = 1
         Me.txtOldPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -57,6 +58,7 @@ Partial Class ChangePasswordForm
         Me.txtNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNewPassword.Location = New System.Drawing.Point(188, 244)
         Me.txtNewPassword.Name = "txtNewPassword"
+        Me.txtNewPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtNewPassword.Size = New System.Drawing.Size(138, 26)
         Me.txtNewPassword.TabIndex = 2
         Me.txtNewPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
